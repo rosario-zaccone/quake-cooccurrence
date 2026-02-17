@@ -1,0 +1,13 @@
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /home/rosario/Documents/computer_science/projects/quake-cooccurrence/target/scala-2.13/quake-cooccurrence_2.13-0.1.0-SNAPSHOT.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	example[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rosario/Documents/computer_science/projects/quake-cooccurrence/target/scala-2.13/classes/example[0m
+[0m[[0m[0mdebug[0m] [0m[0m	example/Hello.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rosario/Documents/computer_science/projects/quake-cooccurrence/target/scala-2.13/classes/example/Hello.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	example/Hello$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rosario/Documents/computer_science/projects/quake-cooccurrence/target/scala-2.13/classes/example/Hello$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	example/Hello$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rosario/Documents/computer_science/projects/quake-cooccurrence/target/scala-2.13/classes/example/Hello$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	example/Greeting.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rosario/Documents/computer_science/projects/quake-cooccurrence/target/scala-2.13/classes/example/Greeting.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m
