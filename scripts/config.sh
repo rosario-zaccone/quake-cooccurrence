@@ -30,5 +30,5 @@ export BUCKET_LOCATION="${REGION}"
 # FILE TO UPLOAD
 # =====================================
 
-export LOCAL_FILE="./data/full.csv"
-export DEST_FILE_NAME="dataset.csv"   
+export LOCAL_FILE="./data/trimmed.csv"
+export DEST_FILE_NAME="dataset_trimmed.csv"   
