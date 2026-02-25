@@ -1,8 +1,10 @@
-ThisBuild / version := "0.1.0-SNAPSHOT"
+name := "quake-cooccurrence"
 
-ThisBuild / scalaVersion := "3.3.7"
+version := "0.1"
 
-lazy val root = (project in file("."))
-  .settings(
-    name := "quake-cooccurrence"
-  )
+scalaVersion := "2.12.10"
+
+libraryDependencies ++= Seq(
+  "org.apache.spark" %% "spark-core" % "3.5.0",
+  "org.apache.spark" %% "spark-sql"  % "3.5.0"
+)

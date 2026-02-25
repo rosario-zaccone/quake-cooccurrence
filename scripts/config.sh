@@ -12,7 +12,7 @@ export ZONE="europe-west1-b"
 # DATAPROC CONFIGURATION
 # =====================================
 
-export NUM_WORKERS=2 # test with 2, 3 and 4
+export NUM_WORKERS=3 # test with 2, 3 and 4
 export CLUSTER_NAME="spark-cluster-${NUM_WORKERS}w"
 export MACHINE_TYPE="n2-standard-4"
 export IMAGE_VERSION="2.1-debian11"
