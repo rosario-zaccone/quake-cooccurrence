@@ -1,0 +1,470 @@
+Uploading /home/rosario/Documents/computer_science/projects/quake-cooccurrence/target/scala-2.12/quake-cooccurrence_2.12-0.1.jar to gs://scalableunibo2026-spark-data/jobs/quake-cooccurrence_2.12-0.1.jar...
+Copying file:///home/rosario/Documents/computer_science/projects/quake-cooccurrence/target/scala-2.12/quake-cooccurrence_2.12-0.1.jar [Content-Type=application/java-archive]...
+/ [0 files][    0.0 B/ 33.5 KiB]                                                / [1 files][ 33.5 KiB/ 33.5 KiB]                                                
+Operation completed over 1 objects/33.5 KiB.                                     
+Submitting Spark job...
+Job [8eec61c0f5a44953bc01a3cf86c1db14] submitted.
+Waiting for job output...
+26/03/30 23:14:43 INFO SparkEnv: Registering MapOutputTracker
+26/03/30 23:14:43 INFO SparkEnv: Registering BlockManagerMaster
+26/03/30 23:14:43 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/03/30 23:14:43 INFO SparkEnv: Registering OutputCommitCoordinator
+26/03/30 23:14:44 INFO MetricsConfig: Loaded properties from hadoop-metrics2.properties
+26/03/30 23:14:44 INFO MetricsSystemImpl: Scheduled Metric snapshot period at 10 second(s).
+26/03/30 23:14:44 INFO MetricsSystemImpl: google-hadoop-file-system metrics system started
+26/03/30 23:14:44 INFO DataprocSparkPlugin: Registered 188 driver metrics
+26/03/30 23:14:45 INFO DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at spark-cluster-2w-m.europe-west1-b.c.scalableunibo2026.internal./10.132.15.207:8032
+26/03/30 23:14:45 INFO AHSProxy: Connecting to Application History server at spark-cluster-2w-m.europe-west1-b.c.scalableunibo2026.internal./10.132.15.207:10200
+26/03/30 23:14:45 INFO Configuration: resource-types.xml not found
+26/03/30 23:14:45 INFO ResourceUtils: Unable to find 'resource-types.xml'.
+26/03/30 23:14:46 INFO YarnClientImpl: Submitted application application_1774906544127_0010
+26/03/30 23:14:47 INFO DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at spark-cluster-2w-m.europe-west1-b.c.scalableunibo2026.internal./10.132.15.207:8030
+26/03/30 23:14:49 INFO GoogleCloudStorageImpl: Ignoring exception of type GoogleJsonResponseException; verified object already exists with desired state.
+26/03/30 23:14:49 INFO GoogleHadoopOutputStream: hflush(): No-op due to rate limit (RateLimiter[stableRate=0.2qps]): readers will *not* yet see flushed data for gs://dataproc-temp-europe-west1-895293460216-3izh2cth/5652b74d-1e3f-4938-8f4f-8358e97ba260/spark-job-history/application_1774906544127_0010.inprogress [CONTEXT ratelimit_period="1 MINUTES" ]
+26/03/30 23:15:15 INFO GhfsGlobalStorageStatistics: periodic connector metrics: {action_http_delete_request=3, action_http_delete_request_duration=100, action_http_delete_request_max=43, action_http_delete_request_mean=33, action_http_delete_request_min=27, action_http_post_request=8, action_http_post_request_duration=463, action_http_post_request_max=114, action_http_post_request_mean=57, action_http_post_request_min=23, action_http_put_request=4, action_http_put_request_duration=262, action_http_put_request_max=79, action_http_put_request_mean=65, action_http_put_request_min=52, directories_created=1, files_created=1, gcs_api_client_non_found_response_count=18, gcs_api_client_precondition_failed_response_count=1, gcs_api_client_side_error_count=19, gcs_api_time=1841, gcs_api_total_request_count=50, gcs_connector_time=1772, gcs_get_other_request=3, gcs_list_dir_request=2, gcs_list_dir_request_duration=41, gcs_list_dir_request_max=22, gcs_list_dir_request_mean=20, gcs_list_dir_request_min=19, gcs_list_file_request=5, gcs_list_file_request_duration=269, gcs_list_file_request_max=177, gcs_list_file_request_mean=53, gcs_list_file_request_min=16, gcs_metadata_request=25, gcs_metadata_request_duration=635, gcs_metadata_request_max=178, gcs_metadata_request_mean=25, gcs_metadata_request_min=12, gs_filesystem_create=4, gs_filesystem_initialize=3, op_create=1, op_create_duration=85, op_create_max=85, op_create_mean=85, op_create_min=85, op_exists=1, op_get_file_status=4, op_get_file_status_duration=575, op_get_file_status_max=494, op_get_file_status_mean=143, op_get_file_status_min=21, op_get_list_status_result_size=2, op_hflush=18, op_hflush_duration=892, op_hflush_max=271, op_hflush_mean=49, op_list_status=2, op_list_status_duration=51, op_list_status_max=29, op_list_status_mean=25, op_list_status_min=22, op_mkdirs=1, op_mkdirs_duration=169, op_mkdirs_max=169, op_mkdirs_mean=169, op_mkdirs_min=169, stream_write_bytes=226255, uptimeSeconds=33}
+[CONTEXT ratelimit_period="5 MINUTES" ]
+26/03/30 23:27:11 INFO GhfsGlobalStorageStatistics: periodic connector metrics: {action_http_delete_request=3, action_http_delete_request_duration=100, action_http_delete_request_max=43, action_http_delete_request_mean=33, action_http_delete_request_min=27, action_http_post_request=10, action_http_post_request_duration=592, action_http_post_request_max=114, action_http_post_request_mean=59, action_http_post_request_min=23, action_http_put_request=5, action_http_put_request_duration=349, action_http_put_request_max=87, action_http_put_request_mean=69, action_http_put_request_min=52, directories_created=1, files_created=1, gcs_api_client_non_found_response_count=21, gcs_api_client_precondition_failed_response_count=1, gcs_api_client_side_error_count=22, gcs_api_time=2151, gcs_api_total_request_count=59, gcs_connector_time=2031, gcs_get_other_request=4, gcs_list_dir_request=2, gcs_list_dir_request_duration=41, gcs_list_dir_request_max=22, gcs_list_dir_request_mean=20, gcs_list_dir_request_min=19, gcs_list_file_request=5, gcs_list_file_request_duration=269, gcs_list_file_request_max=177, gcs_list_file_request_mean=53, gcs_list_file_request_min=16, gcs_metadata_request=28, gcs_metadata_request_duration=705, gcs_metadata_request_max=178, gcs_metadata_request_mean=25, gcs_metadata_request_min=12, gs_filesystem_create=4, gs_filesystem_initialize=3, op_create=1, op_create_duration=85, op_create_max=85, op_create_mean=85, op_create_min=85, op_exists=1, op_get_file_status=4, op_get_file_status_duration=575, op_get_file_status_max=494, op_get_file_status_mean=143, op_get_file_status_min=21, op_get_list_status_result_size=2, op_hflush=23, op_hflush_duration=1151, op_hflush_max=271, op_hflush_mean=50, op_list_status=2, op_list_status_duration=51, op_list_status_max=29, op_list_status_mean=25, op_list_status_min=22, op_mkdirs=1, op_mkdirs_duration=169, op_mkdirs_max=169, op_mkdirs_mean=169, op_mkdirs_min=169, stream_write_bytes=290306, uptimeSeconds=749}
+[CONTEXT ratelimit_period="5 MINUTES [skipped: 4]" ]
+26/03/30 23:29:12 WARN YarnAllocator: Container from a bad node: container_1774906544127_0010_01_000001 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:29:11.094]Container killed on request. Exit code is 137
+[2026-03-30 23:29:11.095]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:29:11.095]Killed by external signal
+.
+26/03/30 23:29:12 WARN YarnSchedulerBackend$YarnSchedulerEndpoint: Requesting driver to remove executor 1 for reason Container from a bad node: container_1774906544127_0010_01_000001 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:29:11.094]Container killed on request. Exit code is 137
+[2026-03-30 23:29:11.095]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:29:11.095]Killed by external signal
+.
+26/03/30 23:29:12 ERROR YarnScheduler: Lost executor 1 on spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal: Container from a bad node: container_1774906544127_0010_01_000001 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:29:11.094]Container killed on request. Exit code is 137
+[2026-03-30 23:29:11.095]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:29:11.095]Killed by external signal
+.
+26/03/30 23:29:12 WARN TaskSetManager: Lost task 2.0 in stage 4.0 (TID 23) (spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal executor 1): ExecutorLostFailure (executor 1 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000001 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:29:11.094]Container killed on request. Exit code is 137
+[2026-03-30 23:29:11.095]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:29:11.095]Killed by external signal
+.
+26/03/30 23:29:12 WARN TaskSetManager: Lost task 6.0 in stage 4.0 (TID 27) (spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal executor 1): ExecutorLostFailure (executor 1 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000001 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:29:11.094]Container killed on request. Exit code is 137
+[2026-03-30 23:29:11.095]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:29:11.095]Killed by external signal
+.
+26/03/30 23:29:12 INFO GoogleHadoopOutputStream: hflush(): No-op due to rate limit (RateLimiter[stableRate=0.2qps]): readers will *not* yet see flushed data for gs://dataproc-temp-europe-west1-895293460216-3izh2cth/5652b74d-1e3f-4938-8f4f-8358e97ba260/spark-job-history/application_1774906544127_0010.inprogress [CONTEXT ratelimit_period="1 MINUTES [skipped: 17]" ]
+26/03/30 23:29:19 WARN YarnAllocator: Container from a bad node: container_1774906544127_0010_01_000004 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:29:18.516]Container killed on request. Exit code is 137
+[2026-03-30 23:29:18.519]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:29:18.520]Killed by external signal
+.
+26/03/30 23:29:19 WARN YarnSchedulerBackend$YarnSchedulerEndpoint: Requesting driver to remove executor 4 for reason Container from a bad node: container_1774906544127_0010_01_000004 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:29:18.516]Container killed on request. Exit code is 137
+[2026-03-30 23:29:18.519]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:29:18.520]Killed by external signal
+.
+26/03/30 23:29:19 ERROR YarnScheduler: Lost executor 4 on spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal: Container from a bad node: container_1774906544127_0010_01_000004 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:29:18.516]Container killed on request. Exit code is 137
+[2026-03-30 23:29:18.519]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:29:18.520]Killed by external signal
+.
+26/03/30 23:29:19 WARN TaskSetManager: Lost task 4.0 in stage 4.0 (TID 25) (spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal executor 4): ExecutorLostFailure (executor 4 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000004 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:29:18.516]Container killed on request. Exit code is 137
+[2026-03-30 23:29:18.519]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:29:18.520]Killed by external signal
+.
+26/03/30 23:29:19 WARN TaskSetManager: Lost task 0.0 in stage 4.0 (TID 21) (spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal executor 4): ExecutorLostFailure (executor 4 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000004 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:29:18.516]Container killed on request. Exit code is 137
+[2026-03-30 23:29:18.519]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:29:18.520]Killed by external signal
+.
+26/03/30 23:31:43 WARN YarnAllocator: Container from a bad node: container_1774906544127_0010_01_000003 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:31:43.443]Container killed on request. Exit code is 137
+[2026-03-30 23:31:43.454]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:31:43.454]Killed by external signal
+.
+26/03/30 23:31:43 WARN YarnSchedulerBackend$YarnSchedulerEndpoint: Requesting driver to remove executor 3 for reason Container from a bad node: container_1774906544127_0010_01_000003 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:31:43.443]Container killed on request. Exit code is 137
+[2026-03-30 23:31:43.454]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:31:43.454]Killed by external signal
+.
+26/03/30 23:31:43 ERROR YarnScheduler: Lost executor 3 on spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal: Container from a bad node: container_1774906544127_0010_01_000003 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:31:43.443]Container killed on request. Exit code is 137
+[2026-03-30 23:31:43.454]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:31:43.454]Killed by external signal
+.
+26/03/30 23:31:43 WARN TaskSetManager: Lost task 7.0 in stage 4.0 (TID 28) (spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal executor 3): ExecutorLostFailure (executor 3 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000003 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:31:43.443]Container killed on request. Exit code is 137
+[2026-03-30 23:31:43.454]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:31:43.454]Killed by external signal
+.
+26/03/30 23:31:43 WARN TaskSetManager: Lost task 3.0 in stage 4.0 (TID 24) (spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal executor 3): ExecutorLostFailure (executor 3 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000003 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:31:43.443]Container killed on request. Exit code is 137
+[2026-03-30 23:31:43.454]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:31:43.454]Killed by external signal
+.
+26/03/30 23:31:43 INFO GoogleHadoopOutputStream: hflush(): No-op due to rate limit (RateLimiter[stableRate=0.2qps]): readers will *not* yet see flushed data for gs://dataproc-temp-europe-west1-895293460216-3izh2cth/5652b74d-1e3f-4938-8f4f-8358e97ba260/spark-job-history/application_1774906544127_0010.inprogress [CONTEXT ratelimit_period="1 MINUTES [skipped: 4]" ]
+26/03/30 23:32:39 INFO GhfsGlobalStorageStatistics: periodic connector metrics: {action_http_delete_request=11, action_http_delete_request_duration=339, action_http_delete_request_max=43, action_http_delete_request_mean=30, action_http_delete_request_min=25, action_http_post_request=26, action_http_post_request_duration=1540, action_http_post_request_max=135, action_http_post_request_mean=59, action_http_post_request_min=19, action_http_put_request=13, action_http_put_request_duration=873, action_http_put_request_max=87, action_http_put_request_mean=67, action_http_put_request_min=52, directories_created=1, files_created=1, gcs_api_client_non_found_response_count=45, gcs_api_client_precondition_failed_response_count=1, gcs_api_client_side_error_count=46, gcs_api_time=4481, gcs_api_total_request_count=123, gcs_connector_time=3728, gcs_get_other_request=12, gcs_list_dir_request=2, gcs_list_dir_request_duration=41, gcs_list_dir_request_max=22, gcs_list_dir_request_mean=20, gcs_list_dir_request_min=19, gcs_list_file_request=5, gcs_list_file_request_duration=269, gcs_list_file_request_max=177, gcs_list_file_request_mean=53, gcs_list_file_request_min=16, gcs_metadata_request=52, gcs_metadata_request_duration=1202, gcs_metadata_request_max=178, gcs_metadata_request_mean=23, gcs_metadata_request_min=12, gs_filesystem_create=4, gs_filesystem_initialize=3, op_create=1, op_create_duration=85, op_create_max=85, op_create_mean=85, op_create_min=85, op_exists=1, op_get_file_status=4, op_get_file_status_duration=575, op_get_file_status_max=494, op_get_file_status_mean=143, op_get_file_status_min=21, op_get_list_status_result_size=2, op_hflush=39, op_hflush_duration=2848, op_hflush_max=271, op_hflush_mean=73, op_list_status=2, op_list_status_duration=51, op_list_status_max=29, op_list_status_mean=25, op_list_status_min=22, op_mkdirs=1, op_mkdirs_duration=169, op_mkdirs_max=169, op_mkdirs_mean=169, op_mkdirs_min=169, stream_write_bytes=314072, uptimeSeconds=1077}
+[CONTEXT ratelimit_period="5 MINUTES [skipped: 15]" ]
+26/03/30 23:33:09 WARN YarnAllocator: Container from a bad node: container_1774906544127_0010_01_000002 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 143. Diagnostics: [2026-03-30 23:33:08.945]Container killed on request. Exit code is 143
+[2026-03-30 23:33:08.946]Container exited with a non-zero exit code 143. 
+[2026-03-30 23:33:08.947]Killed by external signal
+.
+26/03/30 23:33:09 WARN YarnSchedulerBackend$YarnSchedulerEndpoint: Requesting driver to remove executor 2 for reason Container from a bad node: container_1774906544127_0010_01_000002 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 143. Diagnostics: [2026-03-30 23:33:08.945]Container killed on request. Exit code is 143
+[2026-03-30 23:33:08.946]Container exited with a non-zero exit code 143. 
+[2026-03-30 23:33:08.947]Killed by external signal
+.
+26/03/30 23:33:09 ERROR YarnScheduler: Lost executor 2 on spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal: Container from a bad node: container_1774906544127_0010_01_000002 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 143. Diagnostics: [2026-03-30 23:33:08.945]Container killed on request. Exit code is 143
+[2026-03-30 23:33:08.946]Container exited with a non-zero exit code 143. 
+[2026-03-30 23:33:08.947]Killed by external signal
+.
+26/03/30 23:33:09 WARN TaskSetManager: Lost task 5.0 in stage 4.0 (TID 26) (spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal executor 2): ExecutorLostFailure (executor 2 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000002 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 143. Diagnostics: [2026-03-30 23:33:08.945]Container killed on request. Exit code is 143
+[2026-03-30 23:33:08.946]Container exited with a non-zero exit code 143. 
+[2026-03-30 23:33:08.947]Killed by external signal
+.
+26/03/30 23:33:09 WARN TaskSetManager: Lost task 1.0 in stage 4.0 (TID 22) (spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal executor 2): ExecutorLostFailure (executor 2 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000002 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 143. Diagnostics: [2026-03-30 23:33:08.945]Container killed on request. Exit code is 143
+[2026-03-30 23:33:08.946]Container exited with a non-zero exit code 143. 
+[2026-03-30 23:33:08.947]Killed by external signal
+.
+26/03/30 23:33:09 INFO GoogleHadoopOutputStream: hflush(): No-op due to rate limit (RateLimiter[stableRate=0.2qps]): readers will *not* yet see flushed data for gs://dataproc-temp-europe-west1-895293460216-3izh2cth/5652b74d-1e3f-4938-8f4f-8358e97ba260/spark-job-history/application_1774906544127_0010.inprogress [CONTEXT ratelimit_period="1 MINUTES [skipped: 2]" ]
+26/03/30 23:34:08 WARN YarnAllocator: Container from a bad node: container_1774906544127_0010_01_000005 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:34:07.522]Container killed on request. Exit code is 137
+[2026-03-30 23:34:07.523]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:34:07.524]Killed by external signal
+.
+26/03/30 23:34:08 WARN YarnSchedulerBackend$YarnSchedulerEndpoint: Requesting driver to remove executor 5 for reason Container from a bad node: container_1774906544127_0010_01_000005 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:34:07.522]Container killed on request. Exit code is 137
+[2026-03-30 23:34:07.523]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:34:07.524]Killed by external signal
+.
+26/03/30 23:34:08 ERROR YarnScheduler: Lost executor 5 on spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal: Container from a bad node: container_1774906544127_0010_01_000005 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:34:07.522]Container killed on request. Exit code is 137
+[2026-03-30 23:34:07.523]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:34:07.524]Killed by external signal
+.
+26/03/30 23:34:08 WARN TaskSetManager: Lost task 0.1 in stage 4.0 (TID 29) (spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal executor 5): ExecutorLostFailure (executor 5 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000005 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:34:07.522]Container killed on request. Exit code is 137
+[2026-03-30 23:34:07.523]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:34:07.524]Killed by external signal
+.
+26/03/30 23:34:08 WARN TaskSetManager: Lost task 4.1 in stage 4.0 (TID 30) (spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal executor 5): ExecutorLostFailure (executor 5 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000005 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:34:07.522]Container killed on request. Exit code is 137
+[2026-03-30 23:34:07.523]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:34:07.524]Killed by external signal
+.
+26/03/30 23:34:25 INFO GoogleHadoopOutputStream: hflush(): No-op due to rate limit (RateLimiter[stableRate=0.2qps]): readers will *not* yet see flushed data for gs://dataproc-temp-europe-west1-895293460216-3izh2cth/5652b74d-1e3f-4938-8f4f-8358e97ba260/spark-job-history/application_1774906544127_0010.inprogress [CONTEXT ratelimit_period="1 MINUTES [skipped: 3]" ]
+26/03/30 23:37:20 WARN YarnAllocator: Container from a bad node: container_1774906544127_0010_01_000007 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 143. Diagnostics: [2026-03-30 23:37:20.737]Container killed on request. Exit code is 143
+[2026-03-30 23:37:20.738]Container exited with a non-zero exit code 143. 
+[2026-03-30 23:37:20.739]Killed by external signal
+.
+26/03/30 23:37:20 WARN YarnSchedulerBackend$YarnSchedulerEndpoint: Requesting driver to remove executor 7 for reason Container from a bad node: container_1774906544127_0010_01_000007 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 143. Diagnostics: [2026-03-30 23:37:20.737]Container killed on request. Exit code is 143
+[2026-03-30 23:37:20.738]Container exited with a non-zero exit code 143. 
+[2026-03-30 23:37:20.739]Killed by external signal
+.
+26/03/30 23:37:20 ERROR YarnScheduler: Lost executor 7 on spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal: Container from a bad node: container_1774906544127_0010_01_000007 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 143. Diagnostics: [2026-03-30 23:37:20.737]Container killed on request. Exit code is 143
+[2026-03-30 23:37:20.738]Container exited with a non-zero exit code 143. 
+[2026-03-30 23:37:20.739]Killed by external signal
+.
+26/03/30 23:37:20 WARN TaskSetManager: Lost task 7.1 in stage 4.0 (TID 34) (spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal executor 7): ExecutorLostFailure (executor 7 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000007 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 143. Diagnostics: [2026-03-30 23:37:20.737]Container killed on request. Exit code is 143
+[2026-03-30 23:37:20.738]Container exited with a non-zero exit code 143. 
+[2026-03-30 23:37:20.739]Killed by external signal
+.
+26/03/30 23:37:20 WARN TaskSetManager: Lost task 3.1 in stage 4.0 (TID 33) (spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal executor 7): ExecutorLostFailure (executor 7 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000007 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 143. Diagnostics: [2026-03-30 23:37:20.737]Container killed on request. Exit code is 143
+[2026-03-30 23:37:20.738]Container exited with a non-zero exit code 143. 
+[2026-03-30 23:37:20.739]Killed by external signal
+.
+26/03/30 23:37:20 INFO GoogleHadoopOutputStream: hflush(): No-op due to rate limit (RateLimiter[stableRate=0.2qps]): readers will *not* yet see flushed data for gs://dataproc-temp-europe-west1-895293460216-3izh2cth/5652b74d-1e3f-4938-8f4f-8358e97ba260/spark-job-history/application_1774906544127_0010.inprogress [CONTEXT ratelimit_period="1 MINUTES" ]
+26/03/30 23:37:35 WARN YarnAllocator: Container from a bad node: container_1774906544127_0010_01_000006 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:37:35.356]Container killed on request. Exit code is 137
+[2026-03-30 23:37:35.357]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:37:35.357]Killed by external signal
+.
+26/03/30 23:37:35 WARN YarnSchedulerBackend$YarnSchedulerEndpoint: Requesting driver to remove executor 6 for reason Container from a bad node: container_1774906544127_0010_01_000006 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:37:35.356]Container killed on request. Exit code is 137
+[2026-03-30 23:37:35.357]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:37:35.357]Killed by external signal
+.
+26/03/30 23:37:35 ERROR YarnScheduler: Lost executor 6 on spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal: Container from a bad node: container_1774906544127_0010_01_000006 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:37:35.356]Container killed on request. Exit code is 137
+[2026-03-30 23:37:35.357]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:37:35.357]Killed by external signal
+.
+26/03/30 23:37:35 WARN TaskSetManager: Lost task 2.1 in stage 4.0 (TID 32) (spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal executor 6): ExecutorLostFailure (executor 6 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000006 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:37:35.356]Container killed on request. Exit code is 137
+[2026-03-30 23:37:35.357]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:37:35.357]Killed by external signal
+.
+26/03/30 23:37:35 WARN TaskSetManager: Lost task 6.1 in stage 4.0 (TID 31) (spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal executor 6): ExecutorLostFailure (executor 6 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000006 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:37:35.356]Container killed on request. Exit code is 137
+[2026-03-30 23:37:35.357]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:37:35.357]Killed by external signal
+.
+26/03/30 23:37:52 INFO GhfsGlobalStorageStatistics: periodic connector metrics: {action_http_delete_request=18, action_http_delete_request_duration=557, action_http_delete_request_max=43, action_http_delete_request_mean=30, action_http_delete_request_min=25, action_http_post_request=40, action_http_post_request_duration=2409, action_http_post_request_max=135, action_http_post_request_mean=60, action_http_post_request_min=19, action_http_put_request=20, action_http_put_request_duration=1324, action_http_put_request_max=87, action_http_put_request_mean=66, action_http_put_request_min=52, directories_created=1, files_created=1, gcs_api_client_non_found_response_count=66, gcs_api_client_precondition_failed_response_count=1, gcs_api_client_side_error_count=67, gcs_api_time=6556, gcs_api_total_request_count=179, gcs_connector_time=5227, gcs_get_other_request=19, gcs_list_dir_request=2, gcs_list_dir_request_duration=41, gcs_list_dir_request_max=22, gcs_list_dir_request_mean=20, gcs_list_dir_request_min=19, gcs_list_file_request=5, gcs_list_file_request_duration=269, gcs_list_file_request_max=177, gcs_list_file_request_mean=53, gcs_list_file_request_min=16, gcs_metadata_request=73, gcs_metadata_request_duration=1618, gcs_metadata_request_max=178, gcs_metadata_request_mean=22, gcs_metadata_request_min=12, gs_filesystem_create=4, gs_filesystem_initialize=3, op_create=1, op_create_duration=85, op_create_max=85, op_create_mean=85, op_create_min=85, op_exists=1, op_get_file_status=4, op_get_file_status_duration=575, op_get_file_status_max=494, op_get_file_status_mean=143, op_get_file_status_min=21, op_get_list_status_result_size=2, op_hflush=57, op_hflush_duration=4347, op_hflush_max=271, op_hflush_mean=76, op_list_status=2, op_list_status_duration=51, op_list_status_max=29, op_list_status_mean=25, op_list_status_min=22, op_mkdirs=1, op_mkdirs_duration=169, op_mkdirs_max=169, op_mkdirs_mean=169, op_mkdirs_min=169, stream_write_bytes=337197, uptimeSeconds=1390}
+[CONTEXT ratelimit_period="5 MINUTES [skipped: 17]" ]
+26/03/30 23:40:11 WARN YarnAllocator: Container from a bad node: container_1774906544127_0010_01_000009 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 143. Diagnostics: [2026-03-30 23:40:09.531]Container killed on request. Exit code is 143
+[2026-03-30 23:40:09.532]Container exited with a non-zero exit code 143. 
+[2026-03-30 23:40:09.532]Killed by external signal
+.
+26/03/30 23:40:11 WARN YarnSchedulerBackend$YarnSchedulerEndpoint: Requesting driver to remove executor 9 for reason Container from a bad node: container_1774906544127_0010_01_000009 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 143. Diagnostics: [2026-03-30 23:40:09.531]Container killed on request. Exit code is 143
+[2026-03-30 23:40:09.532]Container exited with a non-zero exit code 143. 
+[2026-03-30 23:40:09.532]Killed by external signal
+.
+26/03/30 23:40:11 ERROR YarnScheduler: Lost executor 9 on spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal: Container from a bad node: container_1774906544127_0010_01_000009 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 143. Diagnostics: [2026-03-30 23:40:09.531]Container killed on request. Exit code is 143
+[2026-03-30 23:40:09.532]Container exited with a non-zero exit code 143. 
+[2026-03-30 23:40:09.532]Killed by external signal
+.
+26/03/30 23:40:11 WARN TaskSetManager: Lost task 0.2 in stage 4.0 (TID 38) (spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal executor 9): ExecutorLostFailure (executor 9 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000009 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 143. Diagnostics: [2026-03-30 23:40:09.531]Container killed on request. Exit code is 143
+[2026-03-30 23:40:09.532]Container exited with a non-zero exit code 143. 
+[2026-03-30 23:40:09.532]Killed by external signal
+.
+26/03/30 23:40:11 WARN TaskSetManager: Lost task 4.2 in stage 4.0 (TID 37) (spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal executor 9): ExecutorLostFailure (executor 9 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000009 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 143. Diagnostics: [2026-03-30 23:40:09.531]Container killed on request. Exit code is 143
+[2026-03-30 23:40:09.532]Container exited with a non-zero exit code 143. 
+[2026-03-30 23:40:09.532]Killed by external signal
+.
+26/03/30 23:40:12 INFO GoogleHadoopOutputStream: hflush(): No-op due to rate limit (RateLimiter[stableRate=0.2qps]): readers will *not* yet see flushed data for gs://dataproc-temp-europe-west1-895293460216-3izh2cth/5652b74d-1e3f-4938-8f4f-8358e97ba260/spark-job-history/application_1774906544127_0010.inprogress [CONTEXT ratelimit_period="1 MINUTES [skipped: 6]" ]
+26/03/30 23:40:16 WARN YarnAllocator: Container from a bad node: container_1774906544127_0010_01_000008 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:40:15.774]Container killed on request. Exit code is 137
+[2026-03-30 23:40:15.775]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:40:15.775]Killed by external signal
+.
+26/03/30 23:40:16 WARN YarnSchedulerBackend$YarnSchedulerEndpoint: Requesting driver to remove executor 8 for reason Container from a bad node: container_1774906544127_0010_01_000008 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:40:15.774]Container killed on request. Exit code is 137
+[2026-03-30 23:40:15.775]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:40:15.775]Killed by external signal
+.
+26/03/30 23:40:16 ERROR YarnScheduler: Lost executor 8 on spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal: Container from a bad node: container_1774906544127_0010_01_000008 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:40:15.774]Container killed on request. Exit code is 137
+[2026-03-30 23:40:15.775]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:40:15.775]Killed by external signal
+.
+26/03/30 23:40:16 WARN TaskSetManager: Lost task 1.1 in stage 4.0 (TID 35) (spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal executor 8): ExecutorLostFailure (executor 8 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000008 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:40:15.774]Container killed on request. Exit code is 137
+[2026-03-30 23:40:15.775]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:40:15.775]Killed by external signal
+.
+26/03/30 23:40:16 WARN TaskSetManager: Lost task 5.1 in stage 4.0 (TID 36) (spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal executor 8): ExecutorLostFailure (executor 8 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000008 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:40:15.774]Container killed on request. Exit code is 137
+[2026-03-30 23:40:15.775]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:40:15.775]Killed by external signal
+.
+26/03/30 23:42:41 WARN YarnAllocator: Container from a bad node: container_1774906544127_0010_01_000010 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:42:39.015]Container killed on request. Exit code is 137
+[2026-03-30 23:42:39.016]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:42:39.016]Killed by external signal
+.
+26/03/30 23:42:41 WARN YarnSchedulerBackend$YarnSchedulerEndpoint: Requesting driver to remove executor 10 for reason Container from a bad node: container_1774906544127_0010_01_000010 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:42:39.015]Container killed on request. Exit code is 137
+[2026-03-30 23:42:39.016]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:42:39.016]Killed by external signal
+.
+26/03/30 23:42:41 ERROR YarnScheduler: Lost executor 10 on spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal: Container from a bad node: container_1774906544127_0010_01_000010 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:42:39.015]Container killed on request. Exit code is 137
+[2026-03-30 23:42:39.016]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:42:39.016]Killed by external signal
+.
+26/03/30 23:42:41 WARN TaskSetManager: Lost task 2.2 in stage 4.0 (TID 40) (spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal executor 10): ExecutorLostFailure (executor 10 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000010 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:42:39.015]Container killed on request. Exit code is 137
+[2026-03-30 23:42:39.016]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:42:39.016]Killed by external signal
+.
+26/03/30 23:42:41 WARN TaskSetManager: Lost task 6.2 in stage 4.0 (TID 39) (spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal executor 10): ExecutorLostFailure (executor 10 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000010 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:42:39.015]Container killed on request. Exit code is 137
+[2026-03-30 23:42:39.016]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:42:39.016]Killed by external signal
+.
+26/03/30 23:42:41 INFO GoogleHadoopOutputStream: hflush(): No-op due to rate limit (RateLimiter[stableRate=0.2qps]): readers will *not* yet see flushed data for gs://dataproc-temp-europe-west1-895293460216-3izh2cth/5652b74d-1e3f-4938-8f4f-8358e97ba260/spark-job-history/application_1774906544127_0010.inprogress [CONTEXT ratelimit_period="1 MINUTES [skipped: 4]" ]
+26/03/30 23:42:57 INFO GhfsGlobalStorageStatistics: periodic connector metrics: {action_http_delete_request=26, action_http_delete_request_duration=787, action_http_delete_request_max=43, action_http_delete_request_mean=30, action_http_delete_request_min=24, action_http_post_request=56, action_http_post_request_duration=3372, action_http_post_request_max=135, action_http_post_request_mean=60, action_http_post_request_min=19, action_http_put_request=28, action_http_put_request_duration=1825, action_http_put_request_max=87, action_http_put_request_mean=65, action_http_put_request_min=52, directories_created=1, files_created=1, gcs_api_client_non_found_response_count=90, gcs_api_client_precondition_failed_response_count=1, gcs_api_client_side_error_count=91, gcs_api_time=8863, gcs_api_total_request_count=243, gcs_connector_time=6875, gcs_get_other_request=27, gcs_list_dir_request=2, gcs_list_dir_request_duration=41, gcs_list_dir_request_max=22, gcs_list_dir_request_mean=20, gcs_list_dir_request_min=19, gcs_list_file_request=5, gcs_list_file_request_duration=269, gcs_list_file_request_max=177, gcs_list_file_request_mean=53, gcs_list_file_request_min=16, gcs_metadata_request=97, gcs_metadata_request_duration=2100, gcs_metadata_request_max=178, gcs_metadata_request_mean=21, gcs_metadata_request_min=11, gs_filesystem_create=4, gs_filesystem_initialize=3, op_create=1, op_create_duration=85, op_create_max=85, op_create_mean=85, op_create_min=85, op_exists=1, op_get_file_status=4, op_get_file_status_duration=575, op_get_file_status_max=494, op_get_file_status_mean=143, op_get_file_status_min=21, op_get_list_status_result_size=2, op_hflush=72, op_hflush_duration=5995, op_hflush_max=271, op_hflush_mean=83, op_list_status=2, op_list_status_duration=51, op_list_status_max=29, op_list_status_mean=25, op_list_status_min=22, op_mkdirs=1, op_mkdirs_duration=169, op_mkdirs_max=169, op_mkdirs_mean=169, op_mkdirs_min=169, stream_write_bytes=355498, uptimeSeconds=1695}
+[CONTEXT ratelimit_period="5 MINUTES [skipped: 14]" ]
+26/03/30 23:43:24 WARN YarnAllocator: Container from a bad node: container_1774906544127_0010_01_000011 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:43:24.665]Container killed on request. Exit code is 137
+[2026-03-30 23:43:24.666]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:43:24.667]Killed by external signal
+.
+26/03/30 23:43:24 WARN YarnSchedulerBackend$YarnSchedulerEndpoint: Requesting driver to remove executor 11 for reason Container from a bad node: container_1774906544127_0010_01_000011 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:43:24.665]Container killed on request. Exit code is 137
+[2026-03-30 23:43:24.666]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:43:24.667]Killed by external signal
+.
+26/03/30 23:43:24 ERROR YarnScheduler: Lost executor 11 on spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal: Container from a bad node: container_1774906544127_0010_01_000011 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:43:24.665]Container killed on request. Exit code is 137
+[2026-03-30 23:43:24.666]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:43:24.667]Killed by external signal
+.
+26/03/30 23:43:24 WARN TaskSetManager: Lost task 3.2 in stage 4.0 (TID 41) (spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal executor 11): ExecutorLostFailure (executor 11 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000011 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:43:24.665]Container killed on request. Exit code is 137
+[2026-03-30 23:43:24.666]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:43:24.667]Killed by external signal
+.
+26/03/30 23:43:24 WARN TaskSetManager: Lost task 7.2 in stage 4.0 (TID 42) (spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal executor 11): ExecutorLostFailure (executor 11 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000011 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:43:24.665]Container killed on request. Exit code is 137
+[2026-03-30 23:43:24.666]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:43:24.667]Killed by external signal
+.
+26/03/30 23:45:09 WARN YarnAllocator: Container from a bad node: container_1774906544127_0010_01_000012 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:45:08.531]Container killed on request. Exit code is 137
+[2026-03-30 23:45:08.531]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:45:08.532]Killed by external signal
+.
+26/03/30 23:45:09 WARN YarnSchedulerBackend$YarnSchedulerEndpoint: Requesting driver to remove executor 12 for reason Container from a bad node: container_1774906544127_0010_01_000012 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:45:08.531]Container killed on request. Exit code is 137
+[2026-03-30 23:45:08.531]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:45:08.532]Killed by external signal
+.
+26/03/30 23:45:09 ERROR YarnScheduler: Lost executor 12 on spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal: Container from a bad node: container_1774906544127_0010_01_000012 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:45:08.531]Container killed on request. Exit code is 137
+[2026-03-30 23:45:08.531]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:45:08.532]Killed by external signal
+.
+26/03/30 23:45:09 WARN TaskSetManager: Lost task 1.2 in stage 4.0 (TID 44) (spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal executor 12): ExecutorLostFailure (executor 12 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000012 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:45:08.531]Container killed on request. Exit code is 137
+[2026-03-30 23:45:08.531]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:45:08.532]Killed by external signal
+.
+26/03/30 23:45:09 WARN TaskSetManager: Lost task 5.2 in stage 4.0 (TID 43) (spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal executor 12): ExecutorLostFailure (executor 12 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000012 on host: spark-cluster-2w-w-0.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:45:08.531]Container killed on request. Exit code is 137
+[2026-03-30 23:45:08.531]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:45:08.532]Killed by external signal
+.
+26/03/30 23:45:09 INFO GoogleHadoopOutputStream: hflush(): No-op due to rate limit (RateLimiter[stableRate=0.2qps]): readers will *not* yet see flushed data for gs://dataproc-temp-europe-west1-895293460216-3izh2cth/5652b74d-1e3f-4938-8f4f-8358e97ba260/spark-job-history/application_1774906544127_0010.inprogress [CONTEXT ratelimit_period="1 MINUTES [skipped: 4]" ]
+26/03/30 23:46:15 WARN YarnAllocator: Container from a bad node: container_1774906544127_0010_01_000013 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:46:13.212]Container killed on request. Exit code is 137
+[2026-03-30 23:46:13.213]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:46:13.213]Killed by external signal
+.
+26/03/30 23:46:15 WARN YarnSchedulerBackend$YarnSchedulerEndpoint: Requesting driver to remove executor 13 for reason Container from a bad node: container_1774906544127_0010_01_000013 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:46:13.212]Container killed on request. Exit code is 137
+[2026-03-30 23:46:13.213]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:46:13.213]Killed by external signal
+.
+26/03/30 23:46:15 ERROR YarnScheduler: Lost executor 13 on spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal: Container from a bad node: container_1774906544127_0010_01_000013 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:46:13.212]Container killed on request. Exit code is 137
+[2026-03-30 23:46:13.213]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:46:13.213]Killed by external signal
+.
+26/03/30 23:46:15 WARN TaskSetManager: Lost task 0.3 in stage 4.0 (TID 46) (spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal executor 13): ExecutorLostFailure (executor 13 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000013 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:46:13.212]Container killed on request. Exit code is 137
+[2026-03-30 23:46:13.213]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:46:13.213]Killed by external signal
+.
+26/03/30 23:46:15 ERROR TaskSetManager: Task 0 in stage 4.0 failed 4 times; aborting job
+26/03/30 23:46:15 WARN TaskSetManager: Lost task 4.3 in stage 4.0 (TID 45) (spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal executor 13): ExecutorLostFailure (executor 13 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000013 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:46:13.212]Container killed on request. Exit code is 137
+[2026-03-30 23:46:13.213]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:46:13.213]Killed by external signal
+.
+Exception in thread "main" org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 4.0 failed 4 times, most recent failure: Lost task 0.3 in stage 4.0 (TID 46) (spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal executor 13): ExecutorLostFailure (executor 13 exited caused by one of the running tasks) Reason: Container from a bad node: container_1774906544127_0010_01_000013 on host: spark-cluster-2w-w-1.europe-west1-b.c.scalableunibo2026.internal. Exit status: 137. Diagnostics: [2026-03-30 23:46:13.212]Container killed on request. Exit code is 137
+[2026-03-30 23:46:13.213]Container exited with a non-zero exit code 137. 
+[2026-03-30 23:46:13.213]Killed by external signal
+.
+Driver stacktrace:
+	at org.apache.spark.scheduler.DAGScheduler.failJobAndIndependentStages(DAGScheduler.scala:2856)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2(DAGScheduler.scala:2792)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2$adapted(DAGScheduler.scala:2791)
+	at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
+	at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:2791)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1(DAGScheduler.scala:1247)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1$adapted(DAGScheduler.scala:1247)
+	at scala.Option.foreach(Option.scala:407)
+	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:1247)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:3061)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2994)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2983)
+	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:989)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2459)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2554)
+	at org.apache.spark.rdd.RDD.$anonfun$reduce$1(RDD.scala:1139)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+	at org.apache.spark.rdd.RDD.withScope(RDD.scala:410)
+	at org.apache.spark.rdd.RDD.reduce(RDD.scala:1121)
+	at Solver4.solve(Solvers.scala:185)
+	at Main$.$anonfun$main$5(Main.scala:60)
+	at Main$.$anonfun$main$7(Main.scala:69)
+	at Main$.$anonfun$main$7$adapted(Main.scala:67)
+	at scala.Option.foreach(Option.scala:407)
+	at Main$.main(Main.scala:67)
+	at Main.main(Main.scala)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.apache.spark.deploy.JavaMainApplication.start(SparkApplication.scala:52)
+	at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:1213)
+	at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:196)
+	at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:219)
+	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:93)
+	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1315)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1324)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+26/03/30 23:46:16 ERROR TransportRequestHandler: Error while invoking RpcHandler#receive() for one-way message.
+org.apache.spark.SparkException: Could not find CoarseGrainedScheduler.
+	at org.apache.spark.rpc.netty.Dispatcher.postMessage(Dispatcher.scala:178) ~[spark-core_2.12-3.5.3.jar:3.5.3]
+	at org.apache.spark.rpc.netty.Dispatcher.postOneWayMessage(Dispatcher.scala:150) ~[spark-core_2.12-3.5.3.jar:3.5.3]
+	at org.apache.spark.rpc.netty.NettyRpcHandler.receive(NettyRpcEnv.scala:690) ~[spark-core_2.12-3.5.3.jar:3.5.3]
+	at org.apache.spark.network.server.TransportRequestHandler.processOneWayMessage(TransportRequestHandler.java:274) [spark-network-common_2.12-3.5.3.jar:3.5.3]
+	at org.apache.spark.network.server.TransportRequestHandler.handle(TransportRequestHandler.java:111) [spark-network-common_2.12-3.5.3.jar:3.5.3]
+	at org.apache.spark.network.server.TransportChannelHandler.channelRead0(TransportChannelHandler.java:140) [spark-network-common_2.12-3.5.3.jar:3.5.3]
+	at org.apache.spark.network.server.TransportChannelHandler.channelRead0(TransportChannelHandler.java:53) [spark-network-common_2.12-3.5.3.jar:3.5.3]
+	at io.netty.channel.SimpleChannelInboundHandler.channelRead(SimpleChannelInboundHandler.java:99) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.handler.timeout.IdleStateHandler.channelRead(IdleStateHandler.java:286) [netty-handler-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103) [netty-codec-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at org.apache.spark.network.util.TransportFrameDecoder.channelRead(TransportFrameDecoder.java:102) [spark-network-common_2.12-3.5.3.jar:3.5.3]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) [netty-common-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) [netty-common-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) [netty-common-4.1.100.Final.jar:4.1.100.Final]
+	at java.base/java.lang.Thread.run(Thread.java:829) [?:?]
+26/03/30 23:46:16 INFO DataprocSparkPlugin: Shutting down driver plugin. metrics=[action_http_patch_request=0, files_created=1, gcs_api_server_timeout_count=0, op_get_list_status_result_size=2, op_open=0, action_http_delete_request=33, gcs_api_time=10703, gcs_backoff_count=0, gcs_api_client_unauthorized_response_count=0, stream_read_close_operations=0, stream_read_bytes_backwards_on_seek=0, gs_filesystem_create=4, exception_count=0, gcs_exception_count=0, gcs_api_total_request_count=291, op_create=1, stream_read_vectored_operations=0, gcs_metadata_request=115, gcs_api_client_bad_request_count=0, action_http_put_request=34, op_create_non_recursive=0, gcs_api_client_gone_response_count=0, gs_filesystem_initialize=3, stream_read_vectored_incoming_ranges=0, stream_write_operations=0, gcs_list_dir_request=2, stream_read_operations=0, gcs_api_client_request_timeout_count=0, op_rename=0, op_get_file_status=4, op_glob_status=0, op_exists=1, stream_write_bytes=381990, op_xattr_list=0, op_get_delegation_token=0, gcs_api_server_unavailable_count=0, directories_created=1, files_delete_rejected=0, stream_read_vectored_combined_ranges=0, op_xattr_get_named=0, gcs_list_file_request=5, op_hsync=0, action_http_get_request=0, stream_read_operations_incomplete=0, op_delete=0, stream_read_bytes=0, gcs_api_client_non_found_response_count=108, op_list_located_status=0, gcs_api_client_requested_range_not_statisfiable_count=0, op_hflush=89, op_list_status=2, stream_read_vectored_read_bytes_discarded=0, op_xattr_get_named_map=0, gcs_api_client_side_error_count=109, op_get_file_checksum=0, gcs_api_server_internal_error_count=0, stream_read_seek_bytes_skipped=0, stream_write_close_operations=0, gcs_get_media_request=0, gcs_connector_time=8196, files_deleted=0, action_http_post_request=68, op_mkdirs=1, gcs_api_client_rate_limit_error_count=0, op_copy_from_local_file=0, gcs_api_server_bad_gateway_count=0, stream_readVectored_range_duration=0, stream_read_seek_backward_operations=0, gcs_api_server_side_error_count=0, stream_read_seek_operations=0, gcs_get_other_request=33, stream_read_seek_forward_operations=0, gcs_api_client_precondition_failed_response_count=1, op_xattr_get_map=0, delegation_tokens_issued=0, gcs_backoff_time=0, gcs_list_dir_request_min=19, gcs_metadata_request_min=11, op_delete_min=0, op_glob_status_min=0, op_create_non_recursive_min=0, op_hsync_min=0, op_xattr_get_named_min=0, op_xattr_get_named_map_min=0, op_hflush_min=0, op_xattr_list_min=0, action_http_put_request_min=52, op_open_min=0, gcs_list_file_request_min=16, stream_write_close_operations_min=0, op_create_min=85, action_http_delete_request_min=24, op_mkdirs_min=169, op_list_status_min=22, gcs_get_media_request_min=0, stream_readVectored_range_duration_min=0, stream_read_vectored_operations_min=0, stream_read_close_operations_min=0, stream_read_operations_min=0, stream_read_seek_operations_min=0, op_xattr_get_map_min=0, stream_write_operations_min=0, action_http_patch_request_min=0, op_get_file_status_min=21, op_rename_min=0, delegation_tokens_issued_min=0, action_http_post_request_min=19, stream_read_close_operations_max=0, stream_read_seek_operations_max=0, op_hflush_max=271, op_xattr_list_max=0, op_xattr_get_map_max=0, action_http_put_request_max=87, action_http_patch_request_max=0, action_http_post_request_max=135, stream_write_close_operations_max=0, action_http_delete_request_max=43, op_mkdirs_max=169, gcs_get_media_request_max=0, op_rename_max=0, stream_read_vectored_operations_max=0, stream_readVectored_range_duration_max=0, op_xattr_get_named_map_max=0, stream_write_operations_max=0, stream_read_operations_max=0, op_xattr_get_named_max=0, op_glob_status_max=0, op_create_non_recursive_max=0, op_get_file_status_max=494, op_open_max=0, delegation_tokens_issued_max=0, gcs_list_file_request_max=177, gcs_metadata_request_max=178, op_create_max=85, op_delete_max=0, op_list_status_max=29, op_hsync_max=0, gcs_list_dir_request_max=22, op_open_mean=0, op_xattr_list_mean=0, op_rename_mean=0, op_xattr_get_map_mean=0, gcs_list_dir_request_mean=20, op_glob_status_mean=0, stream_read_seek_operations_mean=0, gcs_list_file_request_mean=53, stream_write_operations_mean=0, op_hflush_mean=82, gcs_metadata_request_mean=21, op_list_status_mean=25, stream_read_close_operations_mean=0, op_xattr_get_named_map_mean=0, stream_read_vectored_operations_mean=0, op_mkdirs_mean=169, action_http_post_request_mean=61, stream_write_close_operations_mean=0, action_http_put_request_mean=64, action_http_patch_request_mean=0, op_hsync_mean=0, delegation_tokens_issued_mean=0, action_http_delete_request_mean=29, stream_read_operations_mean=0, op_create_mean=85, op_delete_mean=0, op_create_non_recursive_mean=0, stream_readVectored_range_duration_mean=0, op_xattr_get_named_mean=0, gcs_get_media_request_mean=0, op_get_file_status_mean=143, op_delete_duration=0, op_get_file_status_duration=575, action_http_put_request_duration=2203, stream_write_operations_duration=0, op_hsync_duration=0, gcs_metadata_request_duration=2466, gcs_get_media_request_duration=0, gcs_list_file_request_duration=269, op_list_status_duration=51, op_mkdirs_duration=169, op_open_duration=0, op_create_duration=85, op_hflush_duration=7316, gcs_list_dir_request_duration=41, op_glob_status_duration=0, stream_read_operations_duration=0, action_http_delete_request_duration=982, action_http_post_request_duration=4157, op_rename_duration=0]
+26/03/30 23:46:16 ERROR TransportRequestHandler: Error while invoking RpcHandler#receive() for one-way message.
+org.apache.spark.SparkException: Could not find CoarseGrainedScheduler.
+	at org.apache.spark.rpc.netty.Dispatcher.postMessage(Dispatcher.scala:178) ~[spark-core_2.12-3.5.3.jar:3.5.3]
+	at org.apache.spark.rpc.netty.Dispatcher.postOneWayMessage(Dispatcher.scala:150) ~[spark-core_2.12-3.5.3.jar:3.5.3]
+	at org.apache.spark.rpc.netty.NettyRpcHandler.receive(NettyRpcEnv.scala:690) ~[spark-core_2.12-3.5.3.jar:3.5.3]
+	at org.apache.spark.network.server.TransportRequestHandler.processOneWayMessage(TransportRequestHandler.java:274) [spark-network-common_2.12-3.5.3.jar:3.5.3]
+	at org.apache.spark.network.server.TransportRequestHandler.handle(TransportRequestHandler.java:111) [spark-network-common_2.12-3.5.3.jar:3.5.3]
+	at org.apache.spark.network.server.TransportChannelHandler.channelRead0(TransportChannelHandler.java:140) [spark-network-common_2.12-3.5.3.jar:3.5.3]
+	at org.apache.spark.network.server.TransportChannelHandler.channelRead0(TransportChannelHandler.java:53) [spark-network-common_2.12-3.5.3.jar:3.5.3]
+	at io.netty.channel.SimpleChannelInboundHandler.channelRead(SimpleChannelInboundHandler.java:99) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.handler.timeout.IdleStateHandler.channelRead(IdleStateHandler.java:286) [netty-handler-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103) [netty-codec-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at org.apache.spark.network.util.TransportFrameDecoder.channelRead(TransportFrameDecoder.java:102) [spark-network-common_2.12-3.5.3.jar:3.5.3]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) [netty-common-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) [netty-common-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) [netty-common-4.1.100.Final.jar:4.1.100.Final]
+	at java.base/java.lang.Thread.run(Thread.java:829) [?:?]
+26/03/30 23:46:16 ERROR TransportRequestHandler: Error while invoking RpcHandler#receive() for one-way message.
+org.apache.spark.SparkException: Could not find CoarseGrainedScheduler.
+	at org.apache.spark.rpc.netty.Dispatcher.postMessage(Dispatcher.scala:178) ~[spark-core_2.12-3.5.3.jar:3.5.3]
+	at org.apache.spark.rpc.netty.Dispatcher.postOneWayMessage(Dispatcher.scala:150) ~[spark-core_2.12-3.5.3.jar:3.5.3]
+	at org.apache.spark.rpc.netty.NettyRpcHandler.receive(NettyRpcEnv.scala:690) ~[spark-core_2.12-3.5.3.jar:3.5.3]
+	at org.apache.spark.network.server.TransportRequestHandler.processOneWayMessage(TransportRequestHandler.java:274) [spark-network-common_2.12-3.5.3.jar:3.5.3]
+	at org.apache.spark.network.server.TransportRequestHandler.handle(TransportRequestHandler.java:111) [spark-network-common_2.12-3.5.3.jar:3.5.3]
+	at org.apache.spark.network.server.TransportChannelHandler.channelRead0(TransportChannelHandler.java:140) [spark-network-common_2.12-3.5.3.jar:3.5.3]
+	at org.apache.spark.network.server.TransportChannelHandler.channelRead0(TransportChannelHandler.java:53) [spark-network-common_2.12-3.5.3.jar:3.5.3]
+	at io.netty.channel.SimpleChannelInboundHandler.channelRead(SimpleChannelInboundHandler.java:99) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.handler.timeout.IdleStateHandler.channelRead(IdleStateHandler.java:286) [netty-handler-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103) [netty-codec-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at org.apache.spark.network.util.TransportFrameDecoder.channelRead(TransportFrameDecoder.java:102) [spark-network-common_2.12-3.5.3.jar:3.5.3]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) [netty-transport-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) [netty-common-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) [netty-common-4.1.100.Final.jar:4.1.100.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) [netty-common-4.1.100.Final.jar:4.1.100.Final]
+	at java.base/java.lang.Thread.run(Thread.java:829) [?:?]
+ERROR: (gcloud.dataproc.jobs.submit.spark) Job [8eec61c0f5a44953bc01a3cf86c1db14] failed with error:
+Job failed with message [org.apache.spark.SparkException: Could not find CoarseGrainedScheduler.]. Additional details can be found at:
+https://console.cloud.google.com/dataproc/jobs/8eec61c0f5a44953bc01a3cf86c1db14?project=scalableunibo2026&region=europe-west1
+gcloud dataproc jobs wait '8eec61c0f5a44953bc01a3cf86c1db14' --region 'europe-west1' --project 'scalableunibo2026'
+https://console.cloud.google.com/storage/browser/scalableunibo2026-spark-temp/google-cloud-dataproc-metainfo/5652b74d-1e3f-4938-8f4f-8358e97ba260/jobs/8eec61c0f5a44953bc01a3cf86c1db14/
+gs://scalableunibo2026-spark-temp/google-cloud-dataproc-metainfo/5652b74d-1e3f-4938-8f4f-8358e97ba260/jobs/8eec61c0f5a44953bc01a3cf86c1db14/driveroutput.*

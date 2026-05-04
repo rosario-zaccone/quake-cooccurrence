@@ -1,0 +1,23 @@
+Uploading /home/rosario/Documents/computer_science/projects/quake-cooccurrence/target/scala-2.12/quake-cooccurrence_2.12-0.1.jar to gs://scalableunibo2026-spark-data/jobs/quake-cooccurrence_2.12-0.1.jar...
+Copying file:///home/rosario/Documents/computer_science/projects/quake-cooccurrence/target/scala-2.12/quake-cooccurrence_2.12-0.1.jar [Content-Type=application/java-archive]...
+/ [0 files][    0.0 B/ 33.9 KiB]                                                / [1 files][ 33.9 KiB/ 33.9 KiB]                                                
+Operation completed over 1 objects/33.9 KiB.                                     
+Submitting Spark job...
+Job [f5dc4c645c534351b0ffaa0798c00cec] submitted.
+Waiting for job output...
+26/03/01 23:30:42 INFO SparkEnv: Registering MapOutputTracker
+26/03/01 23:30:42 INFO SparkEnv: Registering BlockManagerMaster
+26/03/01 23:30:42 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/03/01 23:30:42 INFO SparkEnv: Registering OutputCommitCoordinator
+26/03/01 23:30:43 INFO DataprocSparkPlugin: Registered 128 driver metrics
+26/03/01 23:30:44 INFO DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at spark-cluster-2w-m.europe-west1-b.c.scalableunibo2026.internal./10.132.0.39:8032
+26/03/01 23:30:44 INFO AHSProxy: Connecting to Application History server at spark-cluster-2w-m.europe-west1-b.c.scalableunibo2026.internal./10.132.0.39:10200
+26/03/01 23:30:44 INFO Configuration: resource-types.xml not found
+26/03/01 23:30:44 INFO ResourceUtils: Unable to find 'resource-types.xml'.
+26/03/01 23:30:45 INFO YarnClientImpl: Submitted application application_1772405022235_0006
+26/03/01 23:30:46 INFO DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at spark-cluster-2w-m.europe-west1-b.c.scalableunibo2026.internal./10.132.0.39:8030
+26/03/01 23:30:48 INFO GoogleCloudStorageImpl: Ignoring exception of type GoogleJsonResponseException; verified object already exists with desired state.
+
+
+Command killed by keyboard interrupt
+

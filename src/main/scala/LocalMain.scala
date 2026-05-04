@@ -1,13 +1,13 @@
 import model.{Coordinate, Solution}
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.{RangePartitioner, SparkContext}
+
 
 object LocalMain {
   def main(args: Array[String]): Unit = {
 
     val spark = SparkSession.builder()
       .appName("RDD Terremoti Co-occorrenza - Local")
-      .master("local[*]")  // esegue in locale su tutti i core disponibili
+      .master("local[*]")
       .getOrCreate()
 
     val filename = "./data/trimmed.csv"
@@ -30,5 +30,3 @@ object LocalMain {
     spark.stop()
   }
 }
-
-// se salta tutto vai su edit confgiurations del run di localmain e metti come jdk la 11
