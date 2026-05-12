@@ -1,8 +1,6 @@
 import model.{Coordinate, Solution}
 import org.apache.spark.rdd.RDD
 
-import scala.collection.mutable.ArrayBuffer
-
 
 class Solver1 extends Solver {
   override def solve(data: RDD[(String, Coordinate)]): Solution = {
@@ -140,7 +138,14 @@ class Solver4 extends Solver {
           while (j < n) {
             val a = coordsSeq(i)
             val b = coordsSeq(j)
-            val pair = if (a.latitude < b.latitude || (a.latitude == b.latitude && a.longitude < b.longitude)) (a, b) else (b, a)
+
+            val pair =
+              if (a.longitude < b.longitude ||
+                (a.longitude == b.longitude && a.latitude <= b.latitude))
+                (a, b)
+              else
+                (b, a)
+
             buffer += ((pair, date))
             j += 1
           }
@@ -167,51 +172,53 @@ class Solver4 extends Solver {
 class Solver5 extends Solver {
   override def solve(data: RDD[(String, Coordinate)]): Solution = {
 
-    val grouped: RDD[(String, Set[Coordinate])] =
+    val coordsByDate: RDD[(String, Set[Coordinate])] =
       data.aggregateByKey(Set.empty[Coordinate])(
         (set, coord) => set + coord,
         (s1, s2) => s1 ++ s2
       )
 
-
     val pairsWithDate: RDD[((Coordinate, Coordinate), String)] =
-      grouped.flatMap { case (date, coordsSet) =>
-        val coordsSeq = coordsSet.toSeq
-        val n = coordsSeq.length
-        val buffer = ArrayBuffer.empty[((Coordinate, Coordinate), String)]
-        var i = 0
-        while (i < n) {
-          var j = i + 1
-          while (j < n) {
-            val a = coordsSeq(i)
-            val b = coordsSeq(j)
-            val orderedPair =
-              if (a.longitude < b.longitude || (a.longitude == b.longitude && a.latitude <= b.latitude)) (a, b)
-              else (b, a)
-            buffer += ((orderedPair, date))
-            j += 1
+      coordsByDate.mapPartitions { iter =>
+        iter.flatMap { case (date, coordsSet) =>
+          val coordsSeq = coordsSet.toSeq
+          val n = coordsSeq.length
+          val buffer = scala.collection.mutable.ArrayBuffer
+            .empty[((Coordinate, Coordinate), String)]
+          var i = 0
+          while (i < n) {
+            var j = i + 1
+            while (j < n) {
+              val a = coordsSeq(i)
+              val b = coordsSeq(j)
+              val pair =
+                if (a.longitude < b.longitude ||
+                  (a.longitude == b.longitude && a.latitude <= b.latitude))
+                  (a, b) else (b, a)
+              buffer += ((pair, date))
+              j += 1
+            }
+            i += 1
           }
-          i += 1
+          buffer
         }
-        buffer
-      }.persist()
+      }
 
-    val pairWithCount =
-      pairsWithDate
-        .map { case (pair, _) => (pair, 1) }
-        .reduceByKey(_ + _)
 
-    val maxPair = pairWithCount.reduce { case (a, b) =>
-      if (a._2 >= b._2) a else b
+    val pairDates: RDD[((Coordinate, Coordinate), Set[String])] =
+      pairsWithDate.aggregateByKey(Set.empty[String])(
+        (set, date) => set + date,
+        (s1, s2) => s1 | s2
+      )
+
+
+    val best = pairDates.treeReduce { (a, b) =>
+      if (a._2.size >= b._2.size) a else b
     }
 
-    val dates =
-      pairsWithDate
-        .filter { case (pair, _) => pair == maxPair._1 }
-        .map { case (_, date) => date }
-        .collect()
-
-    Solution(maxPair._1, dates)
+    Solution(
+      pair  = best._1,
+      times = best._2.toSeq.sorted
+    )
   }
 }
-

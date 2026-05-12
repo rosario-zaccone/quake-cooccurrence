@@ -4,7 +4,7 @@
 # GCP CONFIGURATION
 # =====================================
 
-export PROJECT_ID="scalableunibo2026"
+export PROJECT_ID="project-0e93de98-3aae-4b4f-a2a"
 export REGION="europe-west1"
 
 # =====================================
@@ -28,5 +28,5 @@ export BUCKET_LOCATION="${REGION}"
 # FILE TO UPLOAD
 # =====================================
 
-export LOCAL_FILE="./data/trimmed.csv"
-export DEST_FILE_NAME="dataset_trimmed.csv"   
+export LOCAL_FILE="./data/dataset.csv"
+export DEST_FILE_NAME="dataset.csv"
