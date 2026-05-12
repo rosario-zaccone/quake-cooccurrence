@@ -1,9 +1,29 @@
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Datasets and generated outputs
+data/
+logs/
+results/
+
+# sbt / Scala build output
 target/
+project/target/
+project/project/
+.bsp/
+.bloop/
+.metals/
+.scala-build/
+.ammonite/
+
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
+.idea/
 .idea/modules.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
@@ -40,8 +60,19 @@ build/
 ### VS Code ###
 .vscode/
 
+### Python ###
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
 ### Mac OS ###
 .DS_Store
 
-### Scala ###
-.bsp/
+### Linux ###
+*~
