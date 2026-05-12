@@ -158,4 +158,4 @@ The report source is located at:
 docs/relazione.md
 ```
 
-For submission, convert it to PDF and fill the `Repository` field with the public GitHub repository URL.
+
