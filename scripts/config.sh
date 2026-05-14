@@ -4,18 +4,16 @@
 # GCP CONFIGURATION
 # =====================================
 
-export PROJECT_ID="scalableunibo2026"
+export PROJECT_ID="project-0e93de98-3aae-4b4f-a2a"
 export REGION="europe-west1"
-export ZONE="europe-west1-b"
 
 # =====================================
 # DATAPROC CONFIGURATION
 # =====================================
 
-export NUM_WORKERS=2 # test with 2, 3 and 4
-export CLUSTER_NAME="spark-cluster-${NUM_WORKERS}w"
+export NUM_WORKERS=2
+export CLUSTER_NAME="spark-cluster-2w"
 export MACHINE_TYPE="n2-standard-4"
-export IMAGE_VERSION="2.1-debian11"
 export NETWORK="default"
 
 # =====================================
@@ -25,3 +23,10 @@ export NETWORK="default"
 export DATA_BUCKET="${PROJECT_ID}-spark-data"
 export TEMP_BUCKET="${PROJECT_ID}-spark-temp"
 export BUCKET_LOCATION="${REGION}"
+
+# =====================================
+# FILE TO UPLOAD
+# =====================================
+
+export LOCAL_FILE="./data/dataset.csv"
+export DEST_FILE_NAME="dataset.csv"

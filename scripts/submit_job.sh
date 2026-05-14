@@ -26,7 +26,8 @@ gcloud dataproc jobs submit spark \
     --cluster=$CLUSTER_NAME \
     --region=$REGION \
     --class=$MAIN_CLASS \
-    $GCS_JAR_PATH \
+    --jars $GCS_JAR_PATH \
     -- "$@"
+
 
 echo "Job submitted!"
