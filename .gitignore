@@ -6,7 +6,13 @@
 # Datasets and generated outputs
 data/
 logs/
-results/
+
+!results/.gitkeep
+!results/all_results.csv
+!results/output.txt
+!results/results.csv
+!results/*.png
+!results/*.pdf
 
 # sbt / Scala build output
 target/

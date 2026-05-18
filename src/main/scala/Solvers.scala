@@ -25,10 +25,10 @@ class Solver1 extends Solver {
       }
     }
 
-    val groupedByPair: RDD[((Coordinate, Coordinate), Iterable[String])] = pairsWithDate.groupByKey()
+    val groupedByLocality: RDD[((Coordinate, Coordinate), Iterable[String])] = pairsWithDate.groupByKey()
 
     val pairStats: RDD[((Coordinate, Coordinate), (Int, Seq[String]))] =
-      groupedByPair.mapValues(dates => (dates.size, dates.toList.sorted))
+      groupedByLocality.mapValues(dates => (dates.size, dates.toList.sorted))
 
     val maxPair = pairStats.reduce { (a, b) =>
       if (a._2._1 >= b._2._1) a else b
@@ -65,11 +65,11 @@ class Solver2 extends Solver {
       }
     }
 
-    val groupedByPair: RDD[((Coordinate, Coordinate), Iterable[String])] =
+    val groupedByLocality: RDD[((Coordinate, Coordinate), Iterable[String])] =
       pairsWithDate.groupByKey()
 
     val pairStats: RDD[((Coordinate, Coordinate), (Int, Seq[String]))] =
-      groupedByPair.mapValues(dates => (dates.size, dates.toList.sorted))
+      groupedByLocality.mapValues(dates => (dates.size, dates.toList.sorted))
 
     val maxPair = pairStats.reduce { (a, b) =>
       if (a._2._1 >= b._2._1) a else b
@@ -85,13 +85,13 @@ class Solver2 extends Solver {
 
 class Solver3 extends Solver {
   override def solve(data: RDD[(String, Coordinate)]): Solution = {
-    val grouped: RDD[(String, Set[Coordinate])] =
+    val aggregatedByDate: RDD[(String, Set[Coordinate])] =
       data.aggregateByKey(Set.empty[Coordinate])(
         (set, coord) => set + coord,
         (s1, s2) => s1 ++ s2
       )
 
-    val pairsWithDate: RDD[((Coordinate, Coordinate), String)] = grouped.flatMap { case (date, coordsSet) =>
+    val pairsWithDate: RDD[((Coordinate, Coordinate), String)] = aggregatedByDate.flatMap { case (date, coordsSet) =>
       coordsSet.toSeq.combinations(2).map { case Seq(a, b) =>
         val orderedPair =
           if (a.longitude < b.longitude || (a.longitude == b.longitude && a.latitude <= b.latitude)) (a, b)
@@ -100,11 +100,11 @@ class Solver3 extends Solver {
       }
     }
 
-    val groupedByPair: RDD[((Coordinate, Coordinate), Iterable[String])] =
+    val groupedByLocality: RDD[((Coordinate, Coordinate), Iterable[String])] =
       pairsWithDate.groupByKey()
 
     val pairStats: RDD[((Coordinate, Coordinate), (Int, Seq[String]))] =
-      groupedByPair.mapValues(dates => (dates.size, dates.toList.sorted))
+      groupedByLocality.mapValues(dates => (dates.size, dates.toList.sorted))
 
     val maxPair = pairStats.reduce { (a, b) =>
       if (a._2._1 >= b._2._1) a else b
@@ -121,14 +121,14 @@ class Solver3 extends Solver {
 class Solver4 extends Solver {
   def solve(data: RDD[(String, Coordinate)]): Solution = {
 
-    val coordsByDate: RDD[(String, Set[Coordinate])] =
+    val aggregatedByDate: RDD[(String, Set[Coordinate])] =
       data.aggregateByKey(Set.empty[Coordinate])(
         (set, coord) => set + coord,
         (s1, s2) => s1 ++ s2
       )
 
     val pairs: RDD[((Coordinate, Coordinate), String)] =
-      coordsByDate.flatMap { case (date, coordsSet) =>
+      aggregatedByDate.flatMap { case (date, coordsSet) =>
         val coordsSeq = coordsSet.toSeq
         val n = coordsSeq.length
         val buffer = scala.collection.mutable.ArrayBuffer.empty[((Coordinate, Coordinate), String)]
@@ -160,11 +160,11 @@ class Solver4 extends Solver {
         combOp = (s1, s2)   => s1 | s2
       )
 
-    val best = pairDates.reduce { (a, b) =>
+    val maxPair = pairDates.reduce { (a, b) =>
       if (a._2.size >= b._2.size) a else b
     }
 
-    Solution(pair = best._1, times = best._2.toSeq.sorted)
+    Solution(pair = maxPair._1, times = maxPair._2.toSeq.sorted)
   }
 }
 
@@ -172,14 +172,14 @@ class Solver4 extends Solver {
 class Solver5 extends Solver {
   override def solve(data: RDD[(String, Coordinate)]): Solution = {
 
-    val coordsByDate: RDD[(String, Set[Coordinate])] =
+    val aggregatedByDate: RDD[(String, Set[Coordinate])] =
       data.aggregateByKey(Set.empty[Coordinate])(
         (set, coord) => set + coord,
         (s1, s2) => s1 ++ s2
       )
 
     val pairsWithDate: RDD[((Coordinate, Coordinate), String)] =
-      coordsByDate.mapPartitions { iter =>
+      aggregatedByDate.mapPartitions { iter =>
         iter.flatMap { case (date, coordsSet) =>
           val coordsSeq = coordsSet.toSeq
           val n = coordsSeq.length
@@ -212,13 +212,13 @@ class Solver5 extends Solver {
       )
 
 
-    val best = pairDates.treeReduce { (a, b) =>
+    val maxPair = pairDates.treeReduce { (a, b) =>
       if (a._2.size >= b._2.size) a else b
     }
 
     Solution(
-      pair  = best._1,
-      times = best._2.toSeq.sorted
+      pair  = maxPair._1,
+      times = maxPair._2.toSeq.sorted
     )
   }
 }

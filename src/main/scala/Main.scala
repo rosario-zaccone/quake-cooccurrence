@@ -1,5 +1,10 @@
 import model.{Coordinate, Solution}
 import org.apache.spark.sql.SparkSession
+import org.apache.hadoop.fs.{FileSystem, Path}
+import org.apache.hadoop.conf.Configuration
+import java.io.PrintStream
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 /*
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
@@ -9,8 +14,23 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 object Main {
 
+  private def saveToGCS(bucketName: String, solverName: String, clusterName: String, coeff: Int, solution: Solution, elapsed: Double): Unit = {
+    val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"))
+    val outputPath = new Path(s"gs://$bucketName/results/${solverName}_${clusterName}_coeff${coeff}_$timestamp.txt")
+    val fs = FileSystem.get(outputPath.toUri, new Configuration())
+    val out = new PrintStream(fs.create(outputPath, true))
+    try {
+      out.println(s"Solver:  $solverName")
+      out.println(s"Cluster: $clusterName")
+      out.println(s"Coeff:   $coeff")
+      out.println(s"Pair:    (lon=${solution.pair._1.longitude}, lat=${solution.pair._1.latitude}) -> (lon=${solution.pair._2.longitude}, lat=${solution.pair._2.latitude})")
+      out.println(s"Times:   ${solution.times.mkString(", ")}")
+      out.println(f"Elapsed: $elapsed%.3f seconds")
+    } finally { out.close(); fs.close() }
+  }
+
   def main(args: Array[String]): Unit = {
-    if (args.length < 3) {
+    if (args.length < 4) {
       println("Usage: Main <solver-name> <bucket-name> <cluster-name> <partition-multiplier>")
       sys.exit(1)
     }
@@ -19,6 +39,7 @@ object Main {
     val bucketName = args(1)
     val clusterName = args(2)
     val coeff = args(3).toInt
+    println(coeff)
 
     val spark = SparkSession.builder()
       .appName(s"RDD Terremoti - $solverName - $clusterName")
@@ -65,8 +86,12 @@ object Main {
       println(s"==== $solverName ====")
       println(s"Result: $solution")
       println(f"Elapsed time: $elapsed%.3f seconds\n")
+
+      saveToGCS(bucketName, solverName, clusterName, coeff, solution, elapsed)
     }
 
     spark.stop()
   }
+
+
 }
