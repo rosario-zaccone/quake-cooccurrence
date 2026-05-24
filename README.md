@@ -29,7 +29,7 @@ University project for the Scalable and Cloud Programming course. The project im
 |   `-- plot.py
 |-- docs/
 |   |-- project-description.pdf
-|   `-- relazione.md
+|   `-- report.pdf
 |-- data/
 |   `-- dataset.csv
 |-- logs/
@@ -39,8 +39,6 @@ University project for the Scalable and Cloud Programming course. The project im
     |-- results.csv
     `-- *.png / *.pdf
 ```
-
-The `data/`, `logs/`, `target/`, and IDE directories are ignored because they contain local data, generated output, or environment-specific files. The final files in `results/` are kept in the repository because they document the execution output and the benchmark data used in the report.
 
 ## Requirements
 
@@ -52,7 +50,7 @@ The `data/`, `logs/`, `target/`, and IDE directories are ignored because they co
 
 ## Configuration
 
-Edit `scripts/config.sh` with your project settings:
+Edit `scripts/config.sh` with your settings:
 
 ```bash
 export PROJECT_ID="..."
@@ -60,8 +58,10 @@ export REGION="europe-west1"
 export NUM_WORKERS=2
 export CLUSTER_NAME="spark-cluster-2w"
 export MACHINE_TYPE="n2-standard-4"
+export NETWORK="default"
 export DATA_BUCKET="${PROJECT_ID}-spark-data"
 export TEMP_BUCKET="${PROJECT_ID}-spark-temp"
+export BUCKET_LOCATION="${REGION}"
 export LOCAL_FILE="./data/dataset.csv"
 export DEST_FILE_NAME="dataset.csv"
 ```
@@ -91,6 +91,12 @@ Authenticate with Google Cloud:
 ```bash
 gcloud auth login
 gcloud config set project <PROJECT_ID>
+```
+
+Before creating the buckets, load the configuration parameters from `scripts/config.sh`:
+
+```bash
+source ./scripts/config.sh
 ```
 
 Create the buckets and upload the dataset:
@@ -176,7 +182,7 @@ With this normalization, `E(n) = 1` means ideal scaling compared with the 2-work
 
 ## Report
 
-The report source is located at:
+The report is located at:
 
 ```text
 docs/report.pdf
