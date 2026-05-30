@@ -1,4 +1,4 @@
-# quake-cooccurrence
+# Distributed Analysis of Earthquake Co-occurrences
 
 University project for the Scalable and Cloud Programming course. The project implements a distributed earthquake co-occurrence analysis in Scala + Apache Spark: given a CSV dataset, it finds the pair of distinct locations that co-occurs most often on the same day and prints the sorted list of dates.
 

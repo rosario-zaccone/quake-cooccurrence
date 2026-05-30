@@ -7,6 +7,8 @@
 export PROJECT_ID="project-0e93de98-3aae-4b4f-a2a"
 export REGION="europe-west1"
 
+
+
 # =====================================
 # DATAPROC CONFIGURATION
 # =====================================

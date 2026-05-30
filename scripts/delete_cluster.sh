@@ -8,6 +8,8 @@ if ! gcloud dataproc clusters describe $CLUSTER_NAME --region=$REGION >/dev/null
     exit 0
 fi
 
+
+
 echo "Deleting cluster $CLUSTER_NAME..."
 
 gcloud dataproc clusters delete $CLUSTER_NAME \
