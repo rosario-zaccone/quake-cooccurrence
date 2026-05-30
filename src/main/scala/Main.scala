@@ -13,6 +13,8 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 
 object Main {
+  private val weakScalingFlag = "--weak-scaling"
+  private val weakScalingBaseWorkers = 2
 
   private def saveToGCS(bucketName: String, solverName: String, clusterName: String, coeff: Int, solution: Solution, elapsed: Double): Unit = {
     val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"))
@@ -29,16 +31,36 @@ object Main {
     } finally { out.close(); fs.close() }
   }
 
+  private def workerCountFromClusterName(clusterName: String): Option[Int] = {
+    val WorkerCount = """.*?(\d+)w.*""".r
+
+
+    clusterName match {
+      case WorkerCount(workers) => Some(workers.toInt)
+      case _ => None
+    }
+  }
+
+  private def workerCount(spark: SparkSession, clusterName: String): Int = {
+    spark.conf.getOption("spark.executor.instances")
+      .flatMap(value => scala.util.Try(value.toInt).toOption)
+      .orElse(workerCountFromClusterName(clusterName))
+      .getOrElse(1)
+  }
+
   def main(args: Array[String]): Unit = {
     if (args.length < 4) {
-      println("Usage: Main <solver-name> <bucket-name> <cluster-name> <partition-multiplier>")
+      println(s"Usage: Main <solver-name> <bucket-name> <cluster-name> <partition-multiplier> [$weakScalingFlag]")
       sys.exit(1)
     }
 
     val solverName = args(0)
     val bucketName = args(1)
+
+
     val clusterName = args(2)
     val coeff = args(3).toInt
+    val weakScaling = args.drop(4).contains(weakScalingFlag)
     println(coeff)
 
     val spark = SparkSession.builder()
@@ -51,7 +73,7 @@ object Main {
     val path = s"gs://$bucketName/dataset.csv"
 
 
-    val data = spark.read
+    val baseData = spark.read
       .option("header", "true")
       .csv(path)
       .rdd
@@ -60,11 +82,30 @@ object Main {
         val latRaw = row.getAs[String]("latitude").toDouble
         val lonRaw = row.getAs[String]("longitude").toDouble
 
+
         val lat = Math.round(latRaw * 10) / 10.0
         val lon = Math.round(lonRaw * 10) / 10.0
 
         (date, Coordinate(lat, lon))
-      }.repartition(sc.defaultParallelism * coeff);
+      }
+
+    val workers = Math.max(workerCount(spark, clusterName), weakScalingBaseWorkers)
+    val scaledData =
+      if (weakScaling) {
+        baseData
+          .zipWithIndex()
+          .flatMap { case ((date, coordinate), index) =>
+            val fullReplicas = workers / weakScalingBaseWorkers
+            val extraReplicas = if (index % weakScalingBaseWorkers < workers % weakScalingBaseWorkers) 1 else 0
+            val replicas = fullReplicas + extraReplicas
+            (0 until replicas).map(replica => (s"$date-$replica", coordinate))
+          }
+      } else {
+        baseData
+      }
+
+    val data = scaledData
+      .repartition(sc.defaultParallelism * coeff);
 
 
     val solver: Option[() => Any] = solverName match {

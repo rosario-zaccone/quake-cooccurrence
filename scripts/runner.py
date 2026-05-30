@@ -18,9 +18,11 @@ PARTITION_MULTIPLIERS = [2, 3, 4]
 
 SUBMIT_SCRIPT = os.path.join(SCRIPT_DIR, "submit_job.sh")
 CONFIG_FILE = os.path.join(SCRIPT_DIR, "config.sh")
+JAVA_11_HOME = "/usr/lib/jvm/java-11-openjdk-amd64"
 
 LOG_DIR = os.path.join(PROJECT_ROOT, "logs")
 RESULTS_FILE = os.path.join(PROJECT_ROOT, "results/results.csv")
+WEAK_RESULTS_FILE = os.path.join(PROJECT_ROOT, "results/results_weak.csv")
 
 os.makedirs(LOG_DIR, exist_ok=True)
 os.makedirs(os.path.dirname(RESULTS_FILE), exist_ok=True)
@@ -52,7 +54,11 @@ def run_script(script, *args):
     subprocess.run(cmd, cwd=PROJECT_ROOT, check=True)
 
 def compile_jar():
-    result = subprocess.run(["sbt", "package"], cwd=PROJECT_ROOT, capture_output=True, text=True)
+    env = os.environ.copy()
+    if os.path.isdir(JAVA_11_HOME):
+        env["JAVA_HOME"] = JAVA_11_HOME
+        env["PATH"] = os.path.join(JAVA_11_HOME, "bin") + os.pathsep + env["PATH"]
+    result = subprocess.run(["sbt", "package"], cwd=PROJECT_ROOT, capture_output=True, text=True, env=env)
     if result.returncode != 0:
         print("ERROR during compilation:")
         print(result.stdout)
@@ -105,9 +111,11 @@ def delete_bucket():
 def upload_dataset():
     run_script(os.path.join(SCRIPT_DIR, "upload_dataset.sh"))
 
-def submit_job(solver, cluster_name, bucket, multiplier):
+def submit_job(solver, cluster_name, bucket, multiplier, weak_scaling=False):
     log_file = os.path.join(LOG_DIR, f"{solver}_p{multiplier}x_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log")
     cmd = [SUBMIT_SCRIPT, JAR_PATH, "Main", solver, bucket, cluster_name, str(multiplier)]
+    if weak_scaling:
+        cmd.append("--weak-scaling")
     with open(log_file, "w") as f:
         process = subprocess.Popen(cmd, cwd=PROJECT_ROOT, stdout=f, stderr=subprocess.STDOUT)
         process.wait()
@@ -116,11 +124,11 @@ def submit_job(solver, cluster_name, bucket, multiplier):
         return None
     return parse_time_from_log(log_file)
 
-def update_results(solver, multiplier_times):
+def update_results(solver, multiplier_times, results_file=RESULTS_FILE):
     results = {}
     fieldnames = ["Solver"] + [f"time_p{m}x" for m in PARTITION_MULTIPLIERS]
-    if os.path.exists(RESULTS_FILE):
-        with open(RESULTS_FILE, newline="") as f:
+    if os.path.exists(results_file):
+        with open(results_file, newline="") as f:
             reader = csv.DictReader(f)
             for row in reader:
                 results[row["Solver"]] = row
@@ -128,27 +136,29 @@ def update_results(solver, multiplier_times):
     for multiplier, t in multiplier_times.items():
         row[f"time_p{multiplier}x"] = f"{t:.3f}" if t else ""
     results[solver] = row
-    with open(RESULTS_FILE, "w", newline="") as f:
+    with open(results_file, "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         for r in results.values():
             writer.writerow(r)
 
-def run_solvers(bucket=None):
+def run_solvers(bucket=None, weak_scaling=False):
     num_workers, cluster_name = read_config()
     bucket_source = "--bucket" if bucket else "config.sh"
     bucket = bucket or get_config_value("DATA_BUCKET")
+    results_file = WEAK_RESULTS_FILE if weak_scaling else RESULTS_FILE
     print(f"[INFO] Using NUM_WORKERS={num_workers}, CLUSTER_NAME={cluster_name}, DATA_BUCKET={bucket} from {bucket_source}")
+    print(f"[INFO] Weak scaling: {'enabled' if weak_scaling else 'disabled'}")
     compile_jar()
     for solver in SOLVERS:
         multiplier_times = {}
         for multiplier in PARTITION_MULTIPLIERS:
             print(f"[INFO] Running {solver} with partition multiplier {multiplier}x")
-            t = submit_job(solver, cluster_name, bucket, multiplier)
+            t = submit_job(solver, cluster_name, bucket, multiplier, weak_scaling)
             multiplier_times[multiplier] = t
             print(f"[INFO] {solver} p{multiplier}x -> {t:.3f}s" if t else f"[WARN] {solver} p{multiplier}x -> FAILED")
-        update_results(solver, multiplier_times)
-        print(f"[INFO] Updated results.csv for {solver}")
+        update_results(solver, multiplier_times, results_file)
+        print(f"[INFO] Updated {os.path.relpath(results_file, PROJECT_ROOT)} for {solver}")
 
 # =====================================
 # MAIN
@@ -174,9 +184,10 @@ def main():
         print("4. Create cluster")
         print("5. Delete cluster")
         print("6. Run solvers / benchmark")
-        print("7. Source config.sh")
-        print("8. Edit NUM_WORKERS in config.sh")
-        print("9. Exit")
+        print("7. Run solvers / benchmark weak scaling")
+        print("8. Source config.sh")
+        print("9. Edit NUM_WORKERS in config.sh")
+        print("10. Exit")
 
         choice = input("Select an option: ").strip()
 
@@ -199,15 +210,18 @@ def main():
             run_solvers(args.bucket)
 
         elif choice == "7":
+            run_solvers(args.bucket, weak_scaling=True)
+
+        elif choice == "8":
             source_config()
             config_loaded = True
 
-        elif choice == "8":
+        elif choice == "9":
             nodes = int(input("Enter NUM_WORKERS to set in config.sh (2,3,4): ").strip())
             edit_config(nodes)
             config_loaded = False
 
-        elif choice == "9":
+        elif choice == "10":
             print("Exiting.")
             break
 

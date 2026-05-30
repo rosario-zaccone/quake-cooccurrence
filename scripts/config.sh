@@ -11,8 +11,8 @@ export REGION="europe-west1"
 # DATAPROC CONFIGURATION
 # =====================================
 
-export NUM_WORKERS=4
-export CLUSTER_NAME="spark-cluster-4w"
+export NUM_WORKERS=2
+export CLUSTER_NAME="spark-cluster-2w"
 export MACHINE_TYPE="n2-standard-4"
 export NETWORK="default"
 

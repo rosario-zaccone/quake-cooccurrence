@@ -35,9 +35,18 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--output-dir",
-        default=Path("results"),
+        default=Path("results/plot"),
         type=Path,
         help="Directory where plots will be saved.",
+    )
+    parser.add_argument(
+        "--weak-metrics-path",
+        default=Path("results/all_results_weak.csv"),
+        type=Path,
+        help=(
+            "Path to the aggregated weak-scaling CSV metrics file. "
+            "Weak-scaling plots are skipped when the file does not exist."
+        ),
     )
     return parser.parse_args()
 
@@ -119,6 +128,36 @@ def compute_strong_scaling_efficiency(speedup_df: pd.DataFrame) -> pd.DataFrame:
     return efficiency_df
 
 
+def compute_weak_scaling_metrics(
+    avg_df: pd.DataFrame,
+) -> pd.DataFrame:
+    baseline = (
+        avg_df[avg_df["workers"] == BASE_WORKERS][
+            ["solver", "partition_multiplier", "mean_time"]
+        ]
+        .rename(columns={"mean_time": "baseline_mean_time"})
+        .copy()
+    )
+    weak_df = avg_df.merge(
+        baseline,
+        on=["solver", "partition_multiplier"],
+        how="left",
+    )
+    weak_df["workload_scale"] = weak_df["workers"] / BASE_WORKERS
+    weak_df["efficiency"] = weak_df["baseline_mean_time"] / weak_df["mean_time"]
+    weak_df = weak_df[weak_df["workers"] != BASE_WORKERS].copy()
+
+    return weak_df[
+        [
+            "solver",
+            "partition_multiplier",
+            "workers",
+            "workload_scale",
+            "efficiency",
+        ]
+    ].copy()
+
+
 def setup_style() -> None:
     sns.set_theme(
         context="paper",
@@ -140,12 +179,9 @@ def setup_style() -> None:
 
 def save_figure(fig: plt.Figure, output_dir: Path, stem: str) -> None:
     png_path = output_dir / f"{stem}.png"
-    pdf_path = output_dir / f"{stem}.pdf"
     fig.savefig(png_path, bbox_inches="tight")
-    fig.savefig(pdf_path, bbox_inches="tight")
     plt.close(fig)
     print(f"Saved {png_path}")
-    print(f"Saved {pdf_path}")
 
 
 def save_metric_tables(
@@ -178,6 +214,24 @@ def save_metric_tables(
 
     print(f"Saved {speedup_path}")
     print(f"Saved {strong_path}")
+
+
+def save_weak_metric_table(weak_efficiency_df: pd.DataFrame, output_dir: Path) -> None:
+    weak_path = output_dir / "weak.csv"
+
+    weak_columns = [
+        "solver",
+        "partition_multiplier",
+        "workers",
+        "workload_scale",
+        "efficiency",
+    ]
+
+    weak_efficiency_df[weak_columns].sort_values(
+        ["solver", "partition_multiplier", "workers"]
+    ).to_csv(weak_path, index=False)
+
+    print(f"Saved {weak_path}")
 
 
 def add_figure_legend(fig: plt.Figure, handles: list, labels: list) -> None:
@@ -409,42 +463,79 @@ def plot_strong_scaling_efficiency(
     save_figure(fig, output_dir, "strong_scaling_efficiency_by_workers")
 
 
-def plot_time_heatmap(avg_df: pd.DataFrame, output_dir: Path) -> None:
-    heatmap_df = avg_df.copy()
-    heatmap_df["configuration"] = (
-        heatmap_df["workers"].astype(str)
-        + "w / "
-        + heatmap_df["partition_multiplier"].astype(str)
-    )
-    pivot = heatmap_df.pivot(
-        index="solver",
-        columns="configuration",
-        values="mean_time",
+def plot_weak_scaling_efficiency(
+    weak_efficiency_df: pd.DataFrame,
+    output_dir: Path,
+) -> None:
+    workers = sorted(weak_efficiency_df["workers"].unique())
+    solvers = list(weak_efficiency_df["solver"].cat.categories)
+    palette = dict(zip(solvers, sns.color_palette("colorblind", len(solvers))))
+    markers = dict(zip(solvers, ["o", "s", "^", "D", "P"]))
+
+    fig, axes = plt.subplots(
+        1,
+        len(workers),
+        figsize=(9.6, 4.3),
+        sharey=True,
+        constrained_layout=False,
     )
 
-    ordered_columns = sorted(
-        pivot.columns,
-        key=lambda value: (int(value.split("w")[0]), value.split("/ ")[1]),
-    )
-    pivot = pivot[ordered_columns]
+    if len(workers) == 1:
+        axes = [axes]
 
-    fig, ax = plt.subplots(figsize=(11.5, 4.6))
-    sns.heatmap(
-        pivot,
-        ax=ax,
-        annot=True,
-        fmt=".0f",
-        cmap="viridis_r",
-        linewidths=0.6,
-        linecolor="white",
-        cbar_kws={"label": "Mean execution time (s)"},
+    legend_handles = []
+    legend_labels = []
+
+    for ax, worker_count in zip(axes, workers):
+        worker_df = weak_efficiency_df[
+            weak_efficiency_df["workers"] == worker_count
+        ]
+
+        for solver in solvers:
+            solver_df = worker_df[worker_df["solver"] == solver]
+            (line,) = ax.plot(
+                solver_df["partition_multiplier"].astype(str),
+                solver_df["efficiency"],
+                label=solver,
+                color=palette[solver],
+                marker=markers[solver],
+                linewidth=LINE_WIDTH,
+                markersize=MARKER_SIZE,
+            )
+            if worker_count == workers[0]:
+                legend_handles.append(line)
+                legend_labels.append(solver)
+
+        ax.axhline(
+            1.0,
+            linestyle="--",
+            color="#444444",
+            linewidth=1,
+            alpha=0.75,
+        )
+        ax.set_title(f"{worker_count} workers")
+        ax.set_xlabel("Partition multiplier")
+        ax.grid(axis="y", linestyle="--", linewidth=0.7, alpha=0.45)
+        ax.grid(axis="x", visible=False)
+
+    axes[0].set_ylabel(f"Efficiency vs {BASE_WORKERS}-worker baseline")
+    fig.suptitle(
+        "Weak scaling efficiency",
+        fontsize=14,
+        fontweight="bold",
+        y=0.98,
     )
-    ax.set_title("Mean execution time matrix", fontsize=14, fontweight="bold", pad=12)
-    ax.set_xlabel("Cluster configuration")
-    ax.set_ylabel("Solver")
-    ax.tick_params(axis="x", rotation=35)
-    fig.subplots_adjust(bottom=0.24, left=0.10, right=1.0, top=0.87)
-    save_figure(fig, output_dir, "mean_time_heatmap")
+    fig.text(
+        0.5,
+        0.09,
+        "Weak efficiency: T2 / Tn with workload scaled by n / 2. Ideal value = 1.",
+        ha="center",
+        fontsize=9,
+        color="#555555",
+    )
+    add_figure_legend(fig, legend_handles, legend_labels)
+    fig.subplots_adjust(top=0.80, bottom=0.30, left=0.08, right=0.99, wspace=0.12)
+    save_figure(fig, output_dir, "weak_scaling_efficiency_by_workers")
 
 
 def main() -> None:
@@ -462,7 +553,17 @@ def main() -> None:
     plot_mean_time(avg_df, args.output_dir)
     plot_speedup(speedup_df, args.output_dir)
     plot_strong_scaling_efficiency(efficiency_df, args.output_dir)
-    plot_time_heatmap(avg_df, args.output_dir)
+
+    if args.weak_metrics_path.exists():
+        weak_df = load_metrics(args.weak_metrics_path)
+        weak_long_df = to_long_format(weak_df)
+        weak_avg_df = summarize(weak_long_df)
+        weak_efficiency_df = compute_weak_scaling_metrics(weak_avg_df)
+
+        save_weak_metric_table(weak_efficiency_df, args.output_dir)
+        plot_weak_scaling_efficiency(weak_efficiency_df, args.output_dir)
+    else:
+        print(f"Skipped weak-scaling plots; {args.weak_metrics_path} does not exist.")
 
 
 if __name__ == "__main__":
