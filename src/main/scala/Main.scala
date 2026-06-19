@@ -31,26 +31,47 @@ object Main {
     } finally { out.close(); fs.close() }
   }
 
-  private def workerCountFromClusterName(clusterName: String): Option[Int] = {
-    val WorkerCount = """.*?(\d+)w.*""".r
+  private def replicateForWeakScaling(
+                                       data: org.apache.spark.rdd.RDD[(String, Coordinate)],
+                                       workers: Int
+                                     ): org.apache.spark.rdd.RDD[(String, Coordinate)] = {
+    require(
+      workers >= weakScalingBaseWorkers,
+      s"Weak scaling requires at least $weakScalingBaseWorkers workers, found $workers"
+    )
 
+    require(
+      workers % weakScalingBaseWorkers == 0,
+      s"Weak scaling requires workers to be a multiple of $weakScalingBaseWorkers, found $workers"
+    )
 
-    clusterName match {
-      case WorkerCount(workers) => Some(workers.toInt)
-      case _ => None
+    val replicaFactor = workers / weakScalingBaseWorkers
+
+    data.flatMap { case (date, coordinate) =>
+      (0 until replicaFactor).map { replica =>
+        val scaledDate =
+          if (replicaFactor == 1) date
+          else f"$date-replica-$replica%02d"
+
+        val scaledCoordinate =
+          if (replica == 0) {
+            coordinate
+          } else {
+            val offset = replica * 1000.0
+            Coordinate(
+              coordinate.longitude + offset,
+              coordinate.latitude + offset
+            )
+          }
+
+        (scaledDate, scaledCoordinate)
+      }
     }
   }
 
-  private def workerCount(spark: SparkSession, clusterName: String): Int = {
-    spark.conf.getOption("spark.executor.instances")
-      .flatMap(value => scala.util.Try(value.toInt).toOption)
-      .orElse(workerCountFromClusterName(clusterName))
-      .getOrElse(1)
-  }
-
   def main(args: Array[String]): Unit = {
-    if (args.length < 4) {
-      println(s"Usage: Main <solver-name> <bucket-name> <cluster-name> <partition-multiplier> [$weakScalingFlag]")
+    if (args.length < 5) {
+      println(s"Usage: Main <solver-name> <bucket-name> <cluster-name> <partition-multiplier> <workers> [$weakScalingFlag]")
       sys.exit(1)
     }
 
@@ -60,8 +81,17 @@ object Main {
 
     val clusterName = args(2)
     val coeff = args(3).toInt
-    val weakScaling = args.drop(4).contains(weakScalingFlag)
-    println(coeff)
+    val workers = args(4).toInt
+    val weakScaling = args.drop(5).contains(weakScalingFlag)
+
+    if (workers <= 0) {
+      println(s"Invalid worker count: $workers")
+      sys.exit(1)
+    }
+
+    println(s"Partition multiplier: $coeff")
+    println(s"Workers: $workers")
+    println(s"Weak scaling: $weakScaling")
 
     val spark = SparkSession.builder()
       .appName(s"RDD Terremoti - $solverName - $clusterName")
@@ -86,21 +116,15 @@ object Main {
         val lat = Math.round(latRaw * 10) / 10.0
         val lon = Math.round(lonRaw * 10) / 10.0
 
-        (date, Coordinate(lat, lon))
+        (date, Coordinate(lon, lat))
       }
 
-    val workers = Math.max(workerCount(spark, clusterName), weakScalingBaseWorkers)
     val scaledData =
       if (weakScaling) {
-        baseData
-          .zipWithIndex()
-          .flatMap { case ((date, coordinate), index) =>
-            val fullReplicas = workers / weakScalingBaseWorkers
-            val extraReplicas = if (index % weakScalingBaseWorkers < workers % weakScalingBaseWorkers) 1 else 0
-            val replicas = fullReplicas + extraReplicas
-            (0 until replicas).map(replica => (s"$date-$replica", coordinate))
-          }
+        println(s"[DEBUG] Weak scaling enabled: replicating dataset for $workers workers")
+        replicateForWeakScaling(baseData, workers)
       } else {
+        println("[DEBUG] Weak scaling disabled: using original dataset without replication")
         baseData
       }
 

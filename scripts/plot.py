@@ -143,9 +143,26 @@ def compute_weak_scaling_metrics(
         on=["solver", "partition_multiplier"],
         how="left",
     )
+
+    missing_baseline = weak_df["baseline_mean_time"].isna()
+    if missing_baseline.any():
+        missing_groups = (
+            weak_df.loc[missing_baseline, ["solver", "partition_multiplier"]]
+            .drop_duplicates()
+            .sort_values(["solver", "partition_multiplier"])
+        )
+        formatted_groups = ", ".join(
+            f"{row.solver}/{row.partition_multiplier}"
+            for row in missing_groups.itertuples(index=False)
+        )
+        print(
+            "Skipped weak-scaling series without a "
+            f"{BASE_WORKERS}-worker baseline: {formatted_groups}"
+        )
+        weak_df = weak_df.loc[~missing_baseline].copy()
+
     weak_df["workload_scale"] = weak_df["workers"] / BASE_WORKERS
     weak_df["efficiency"] = weak_df["baseline_mean_time"] / weak_df["mean_time"]
-    weak_df = weak_df[weak_df["workers"] != BASE_WORKERS].copy()
 
     return weak_df[
         [
@@ -467,44 +484,80 @@ def plot_weak_scaling_efficiency(
     weak_efficiency_df: pd.DataFrame,
     output_dir: Path,
 ) -> None:
-    workers = sorted(weak_efficiency_df["workers"].unique())
-    solvers = list(weak_efficiency_df["solver"].cat.categories)
+    plotted_df = weak_efficiency_df[weak_efficiency_df["workers"] == 4].copy()
+    if plotted_df.empty:
+        print("Skipped weak-scaling plot; no 4-worker weak-scaling metrics found.")
+        return
+
+    partition_multipliers = list(
+        plotted_df["partition_multiplier"].cat.categories
+    )
+    partition_multipliers = [
+        multiplier
+        for multiplier in partition_multipliers
+        if multiplier in set(plotted_df["partition_multiplier"])
+    ]
+    solvers = list(plotted_df["solver"].cat.categories)
+    solvers = [
+        solver
+        for solver in solvers
+        if solver in set(plotted_df["solver"])
+    ]
     palette = dict(zip(solvers, sns.color_palette("colorblind", len(solvers))))
-    markers = dict(zip(solvers, ["o", "s", "^", "D", "P"]))
 
     fig, axes = plt.subplots(
         1,
-        len(workers),
+        len(partition_multipliers),
         figsize=(9.6, 4.3),
         sharey=True,
         constrained_layout=False,
     )
 
-    if len(workers) == 1:
+    if len(partition_multipliers) == 1:
         axes = [axes]
 
     legend_handles = []
     legend_labels = []
+    max_efficiency = plotted_df["efficiency"].max()
 
-    for ax, worker_count in zip(axes, workers):
-        worker_df = weak_efficiency_df[
-            weak_efficiency_df["workers"] == worker_count
+    for ax, partition_multiplier in zip(axes, partition_multipliers):
+        partition_df = plotted_df[
+            plotted_df["partition_multiplier"] == partition_multiplier
+        ].set_index("solver")
+
+        x_positions = list(range(len(solvers)))
+        heights = [
+            partition_df.loc[solver, "efficiency"]
+            if solver in partition_df.index
+            else float("nan")
+            for solver in solvers
         ]
 
-        for solver in solvers:
-            solver_df = worker_df[worker_df["solver"] == solver]
-            (line,) = ax.plot(
-                solver_df["partition_multiplier"].astype(str),
-                solver_df["efficiency"],
-                label=solver,
-                color=palette[solver],
-                marker=markers[solver],
-                linewidth=LINE_WIDTH,
-                markersize=MARKER_SIZE,
-            )
-            if worker_count == workers[0]:
-                legend_handles.append(line)
+        bars = ax.bar(
+            x_positions,
+            heights,
+            color=[palette[solver] for solver in solvers],
+            width=0.65,
+        )
+
+        if partition_multiplier == partition_multipliers[0]:
+            for solver, bar in zip(solvers, bars):
+                bar.set_label(solver)
+                legend_handles.append(bar)
                 legend_labels.append(solver)
+
+        for x_position, efficiency in zip(x_positions, heights):
+            if pd.isna(efficiency):
+                continue
+            ax.text(
+                x_position,
+                efficiency,
+                f"{efficiency:.2f}",
+                ha="center",
+                va="bottom",
+                fontsize=8,
+                color="#333333",
+            )
 
         ax.axhline(
             1.0,
@@ -513,14 +566,17 @@ def plot_weak_scaling_efficiency(
             linewidth=1,
             alpha=0.75,
         )
-        ax.set_title(f"{worker_count} workers")
-        ax.set_xlabel("Partition multiplier")
+        ax.set_title(f"{partition_multiplier} partitions")
+        ax.set_xlabel("Solver")
+        ax.set_xticks(x_positions)
+        ax.set_xticklabels(solvers, rotation=30, ha="right")
+        ax.set_ylim(0, max(1.08, max_efficiency * 1.18))
         ax.grid(axis="y", linestyle="--", linewidth=0.7, alpha=0.45)
         ax.grid(axis="x", visible=False)
 
-    axes[0].set_ylabel(f"Efficiency vs {BASE_WORKERS}-worker baseline")
+    axes[0].set_ylabel("Weak scaling efficiency")
     fig.suptitle(
-        "Weak scaling efficiency",
+        "4-worker weak scaling efficiency",
         fontsize=14,
         fontweight="bold",
         y=0.98,
@@ -528,13 +584,14 @@ def plot_weak_scaling_efficiency(
     fig.text(
         0.5,
         0.09,
-        "Weak efficiency: T2 / Tn with workload scaled by n / 2. Ideal value = 1.",
+        f"Computed as T{BASE_WORKERS} / T4 with workload scaled by 4 / {BASE_WORKERS}. Ideal value = 1.",
         ha="center",
         fontsize=9,
         color="#555555",
     )
-    add_figure_legend(fig, legend_handles, legend_labels)
-    fig.subplots_adjust(top=0.80, bottom=0.30, left=0.08, right=0.99, wspace=0.12)
+    if legend_handles:
+        add_figure_legend(fig, legend_handles, legend_labels)
+    fig.subplots_adjust(top=0.80, bottom=0.32, left=0.08, right=0.99, wspace=0.12)
     save_figure(fig, output_dir, "weak_scaling_efficiency_by_workers")
 
 

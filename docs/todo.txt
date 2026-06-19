@@ -1,3 +1,0 @@
-- calcolo weak scaling e plot
-- aggiungere parte weak scaling relazione
-- pulire codice

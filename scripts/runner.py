@@ -111,9 +111,9 @@ def delete_bucket():
 def upload_dataset():
     run_script(os.path.join(SCRIPT_DIR, "upload_dataset.sh"))
 
-def submit_job(solver, cluster_name, bucket, multiplier, weak_scaling=False):
+def submit_job(solver, cluster_name, bucket, multiplier, num_workers, weak_scaling=False):
     log_file = os.path.join(LOG_DIR, f"{solver}_p{multiplier}x_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log")
-    cmd = [SUBMIT_SCRIPT, JAR_PATH, "Main", solver, bucket, cluster_name, str(multiplier)]
+    cmd = [SUBMIT_SCRIPT, JAR_PATH, "Main", solver, bucket, cluster_name, str(multiplier), str(num_workers)]
     if weak_scaling:
         cmd.append("--weak-scaling")
     with open(log_file, "w") as f:
@@ -154,7 +154,7 @@ def run_solvers(bucket=None, weak_scaling=False):
         multiplier_times = {}
         for multiplier in PARTITION_MULTIPLIERS:
             print(f"[INFO] Running {solver} with partition multiplier {multiplier}x")
-            t = submit_job(solver, cluster_name, bucket, multiplier, weak_scaling)
+            t = submit_job(solver, cluster_name, bucket, multiplier, num_workers, weak_scaling)
             multiplier_times[multiplier] = t
             print(f"[INFO] {solver} p{multiplier}x -> {t:.3f}s" if t else f"[WARN] {solver} p{multiplier}x -> FAILED")
         update_results(solver, multiplier_times, results_file)
